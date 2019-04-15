@@ -12,8 +12,8 @@ class Map{
             const map = await fetch("dist/res/maps/" + this.maptype + ".json")
             this.data = await map.json()
 
-            this.tile = new Tile(this.data.tile, this.data.tileRow * this.tileCellSize, this.tileCellSize, 1, 4, SCALE)
-            this.tile.canvas.width = this.data.map.length * this.tileCellSize * SCALE
+            this.tile = new Tile(this.data.tile, this.data.tileRow * this.tileCellSize, this.tileCellSize, 1, this.data.tileRow)
+            this.tile.canvas.width = this.data.map[0].length * this.tileCellSize * SCALE
             this.tile.canvas.height = this.data.map.length * this.tileCellSize * SCALE
         }catch(err){
             console.log(err)

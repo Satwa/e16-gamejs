@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 const sass = require('gulp-sass')
 const minify = require('gulp-minify')
+const concat = require('gulp-concat')
 const handler = require('serve-handler')
 const http = require('http')
 
@@ -12,23 +13,24 @@ gulp.task('sass', function () {
 
 gulp.task('js', function () {
     return gulp.src('src/scripts/*.js')
-        .pipe(minify({
-            ext: {
-                min: '.js',
-                src: '.debug.js'
-            }
-        }).on('error', sass.logError))
+        // .pipe(minify({
+        //     ext: {
+        //         min: '.js',
+        //         src: '.debug.js'
+        //     }
+        // }).on('error', sass.logError))
+        .pipe(concat('app.js')) // https://www.npmjs.com/package/gulp-concat
         .pipe(gulp.dest('dist/scripts'))
 })
 
 gulp.task('res', function(){
     return gulp.src(['src/res/**/*', 'src/res/**/**/*'])
-        .pipe(gulp.dest('dist/res'));
-
+        .pipe(gulp.dest('dist/res'))
 })
 
 
 gulp.task("watch", function () {
+
     gulp.watch(['src/sass/*.scss', 'src/sass/**/*.scss'], gulp.series('sass'))
     gulp.watch(['src/scripts/*.js', 'src/scripts/**/*.js'], gulp.series('js'))
     gulp.watch(['src/res/**/*.*', 'src/res/**/**/*.*'], gulp.series('res'))

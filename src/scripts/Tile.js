@@ -1,6 +1,8 @@
 class Tile {
 
-    constructor(image, width, height, row, col){
+    constructor(image, width, height, row, col, scale = SCALE){
+        this.scale = scale
+
         this.image = new Image()
         this.image.src = "dist/res/" + image
         this.width = width
@@ -14,33 +16,28 @@ class Tile {
 
         this.totalCell = row * col
 
-        this.cellHeight = parseInt(width / col)
-        this.cellWidth  = parseInt(height / row)
+        this.cellHeight = height / row
+        this.cellWidth  = width / col
 
         this.currentFrame = 0
         this.canvas = document.querySelector('canvas')
         this.context = this.canvas.getContext('2d')
     }
 
-    // getCells() {
-      // let cells = new Array()
-      // for (let i = 0; i < this.row; i++) {
-      //   for (let j = 0; j < this.row; j++) {
-      //
-      //   }
-      // }
-    // }
+    setSrcY(rowNumber){
+        this.srcY = rowNumber * this.cellHeight
+    }
 
     updateFrame(animated){
         if(animated)
-            this.currentFrame = this.currentFrame++ % this.row
+            this.currentFrame = ++this.currentFrame % this.col
         this.srcX = this.currentFrame * this.cellWidth
     }
 
     render(x, y, animated = true){
         this.updateFrame(animated)
 
-        this.context.drawImage(this.image, this.srcX, this.srcY, this.cellWidth, this.cellHeight, x * SCALE, y * SCALE, this.cellWidth * SCALE, this.cellHeight * SCALE)
+        this.context.drawImage(this.image, this.srcX, this.srcY, this.cellWidth, this.cellHeight, x * this.scale, y * this.scale, this.cellWidth * this.scale, this.cellHeight * this.scale)
     }
 
 }
