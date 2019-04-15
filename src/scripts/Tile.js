@@ -35,9 +35,8 @@ class Tile {
 
     updateFrame(animated){
         if(animated)
-            this.currentFrame = this.currentFrame++ % this.totalCell
+            this.currentFrame = this.currentFrame++ % this.row
         this.srcX = this.currentFrame * this.cellWidth
-        this.srcY = 0
     }
 
     render(x, y, animated = true){
