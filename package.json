@@ -1,0 +1,27 @@
+{
+  "name": "e16-gamejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Satwa/e16-gamejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Satwa/e16-gamejs/issues"
+  },
+  "homepage": "https://github.com/Satwa/e16-gamejs#readme",
+  "dependencies": {
+    "gulp-minify": "^3.1.0",
+    "gulp-sass": "^4.0.2",
+    "serve-handler": "^5.0.8"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0"
+  }
+}
