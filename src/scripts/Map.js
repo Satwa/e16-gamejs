@@ -1,25 +1,21 @@
 class Map{
 
-    constructor(width, height, maptype = 0){
-        this.width   = width
-        this.height  = height
+    constructor(maptype = 0, scale = 4, tileCellSize = 16){
         this.maptype = "0"
         this.data = null
         this.tile = null
+        this.scale = scale
+        this.tileCellSize = tileCellSize
     }
 
     async loadMap(){
-        const scale = 4,
-              tileCellSize = 16
         try{
             const map = await fetch("dist/res/maps/" + this.maptype + ".json")
             this.data = await map.json()
 
-            this.tile = new Tile(this.data.tile, 96, tileCellSize, 1, 6, scale)
-            this.tile.canvas.width = this.data.map.length * tileCellSize * scale
-            this.tile.canvas.height = this.data.map.length * tileCellSize * scale
-            
-            console.log(this.map)
+            this.tile = new Tile(this.data.tile, 96, this.tileCellSize, 1, 6, this.scale)
+            this.tile.canvas.width = this.data.map.length * this.tileCellSize * this.scale
+            this.tile.canvas.height = this.data.map.length * this.tileCellSize * this.scale
         }catch(err){
             console.log(err)
         }

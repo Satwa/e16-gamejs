@@ -1,5 +1,3 @@
-let map = new Map()
+let game = new Game()
 
-map.loadMap().then(() => {
-    map.render()
-})
+game.update()
