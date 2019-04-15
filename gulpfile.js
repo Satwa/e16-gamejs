@@ -21,13 +21,18 @@ gulp.task('js', function () {
         .pipe(gulp.dest('dist/scripts'))
 })
 
+gulp.task('res', function(){
+    return gulp.src(['src/res/**/*', 'src/res/**/**/*'])
+        .pipe(gulp.dest('dist/res'));
+
+})
+
 
 gulp.task("watch", function () {
     gulp.watch(['src/sass/*.scss', 'src/sass/**/*.scss'], gulp.series('sass'))
     gulp.watch(['src/scripts/*.js', 'src/scripts/**/*.js'], gulp.series('js'))
+    gulp.watch(['src/res/**/*.*', 'src/res/**/**/*.*'], gulp.series('res'))
 
-    gulp.src(['src/res/**/*', 'src/res/**/**/*'])
-        .pipe(gulp.dest('dist/res'));
 
     const server = http.createServer((request, response) => {
         return handler(request, response)
