@@ -11,8 +11,13 @@ gulp.task('sass', function () {
 })
 
 gulp.task('js', function () {
-    return gulp.src('src/scripts/app.js')
-        .pipe(minify().on('error', sass.logError))
+    return gulp.src('src/scripts/*.js')
+        .pipe(minify({
+            ext: {
+                min: '.js',
+                src: '.debug.js'
+            }
+        }).on('error', sass.logError))
         .pipe(gulp.dest('dist/scripts'))
 })
 
@@ -20,6 +25,9 @@ gulp.task('js', function () {
 gulp.task("watch", function () {
     gulp.watch(['src/sass/*.scss', 'src/sass/**/*.scss'], gulp.series('sass'))
     gulp.watch(['src/scripts/*.js', 'src/scripts/**/*.js'], gulp.series('js'))
+
+    gulp.src('src/res/**/*')
+        .pipe(gulp.dest('dist/res'));
 
     const server = http.createServer((request, response) => {
         return handler(request, response)
