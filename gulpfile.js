@@ -26,7 +26,7 @@ gulp.task("watch", function () {
     gulp.watch(['src/sass/*.scss', 'src/sass/**/*.scss'], gulp.series('sass'))
     gulp.watch(['src/scripts/*.js', 'src/scripts/**/*.js'], gulp.series('js'))
 
-    gulp.src('src/res/**/*')
+    gulp.src(['src/res/**/*', 'src/res/**/**/*'])
         .pipe(gulp.dest('dist/res'));
 
     const server = http.createServer((request, response) => {
