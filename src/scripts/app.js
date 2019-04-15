@@ -1,3 +1,7 @@
 let game = new Game()
 
-game.update()
+let updater = setInterval(() => {
+    game.update()
+}, 100)
+
+// clearInterval(updater)

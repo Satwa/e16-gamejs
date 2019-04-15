@@ -1,6 +1,6 @@
 class Tile {
 
-    constructor(image, width, height, row, col, scale = 1){
+    constructor(image, width, height, row, col){
         this.image = new Image()
         this.image.src = "dist/res/" + image
         this.width = width
@@ -8,8 +8,6 @@ class Tile {
 
         this.row = row
         this.col = col
-
-        this.scale = scale
 
         this.srcX = 0
         this.srcY = 0
@@ -42,7 +40,7 @@ class Tile {
     render(x, y, animated = true){
         this.updateFrame(animated)
 
-      this.context.drawImage(this.image, this.srcX, this.srcY, this.cellWidth, this.cellHeight, x * this.scale, y * this.scale, this.cellWidth * this.scale, this.cellHeight * this.scale)
+        this.context.drawImage(this.image, this.srcX, this.srcY, this.cellWidth, this.cellHeight, x * SCALE, y * SCALE, this.cellWidth * SCALE, this.cellHeight * SCALE)
     }
 
 }
