@@ -7,18 +7,19 @@ const http = require('http')
 gulp.task('sass', function () {
     return gulp.src('src/sass/app.scss')
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-        .pipe(gulp.dest('dist/styles/app.css'))
+        .pipe(gulp.dest('dist/styles'))
 })
 
 gulp.task('js', function () {
     return gulp.src('src/scripts/app.js')
         .pipe(minify().on('error', sass.logError))
-        .pipe(gulp.dest('dist/scripts/app.js'))
+        .pipe(gulp.dest('dist/scripts'))
 })
 
 
 gulp.task("watch", function () {
     gulp.watch(['src/sass/*.scss', 'src/sass/**/*.scss'], gulp.series('sass'))
+    gulp.watch(['src/scripts/*.js', 'src/scripts/**/*.js'], gulp.series('js'))
 
     const server = http.createServer((request, response) => {
         return handler(request, response)
