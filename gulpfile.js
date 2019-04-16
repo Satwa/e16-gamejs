@@ -13,13 +13,14 @@ gulp.task('sass', function () {
 
 gulp.task('js', function () {
     return gulp.src('src/scripts/*.js')
-        // .pipe(minify({
-        //     ext: {
-        //         min: '.js',
-        //         src: '.debug.js'
-        //     }
-        // }).on('error', sass.logError))
         .pipe(concat('app.js')) // https://www.npmjs.com/package/gulp-concat
+        .pipe(minify({
+            ext: {
+                min: '.js',
+                src: '.debug.js'
+            },
+            noSource: true
+        }).on('error', sass.logError))
         .pipe(gulp.dest('dist/scripts'))
 })
 

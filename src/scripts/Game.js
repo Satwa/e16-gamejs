@@ -9,7 +9,7 @@ class Game{
     }
 
     addPlayer(name, sprite){
-        this.players.push(new Character(name, sprite, this.map.data.tile))
+        this.players.push(new Character(name, sprite, this.map.data.map))
     }
 
     update() {

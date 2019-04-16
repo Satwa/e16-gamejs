@@ -3,11 +3,12 @@ class Character {
     constructor(name, sprite, map){
         this.name = name
         this.sprite = sprite
-        this.stuff = null
         
         this.map = map
-
+        
         this.idle = true
+        this.stuff = null
+        this.health = 3
         
         this.x = CELL_SIZE
         this.y = CELL_SIZE
@@ -22,11 +23,10 @@ class Character {
     }
 
     moveX(factor = 1) {
-        this.idle = false
         let i = 0
         let move = () => {
             this.x = this.x + 1 * factor
-            factor == -1 ? this.tile.setSrcY(2) : this.tile.setSrcY(0) // en fonction des sprites
+            factor == -1 ? this.tile.setSrcY(2) : this.tile.setSrcY(0) // according to sprite
             i++
             if (i != CELL_SIZE) {
                 setTimeout(() => {
@@ -34,24 +34,24 @@ class Character {
                 }, 5)
             }else{
                 this.idle = true
+                this.tile.currentFrame = 0
             }
         }
-        move()
-
-        if (this.tile.srcX < 0 || this.tile.srcX > this.tile.height) {
-            
+        const nextCellX = (this.x + CELL_SIZE * factor) / CELL_SIZE,
+              nextCellY = this.y / CELL_SIZE
+        if(AUTHORIZED_TILES.includes(this.map[nextCellY][nextCellX])){ // If next case is an authorized block, we do the move
+            this.idle = false
+            move()
         }
-        // est-ce que la case suivante est libre ?
     }
 
     moveY(factor = 1) {
-        this.idle = false
         let i = 0
         let move = () => {
             this.y = this.y + 1 * factor
             
             i++
-            factor == -1 ? this.tile.setSrcY(3) : this.tile.setSrcY(1) // en fonction des sprites
+            factor == -1 ? this.tile.setSrcY(3) : this.tile.setSrcY(1) // according to sprite
             
             if (i != CELL_SIZE) {
                 setTimeout(() => {
@@ -59,14 +59,16 @@ class Character {
                 }, 5)
             } else {
                 this.idle = true
+                this.tile.currentFrame = 0
             }
         }
-        move()
 
-        if (this.tile.srcY < 0 || this.tile.srcY > this.tile.height) {
-            
+        const nextCellX = this.x / CELL_SIZE,
+              nextCellY = (this.y + CELL_SIZE * factor) / CELL_SIZE
+        if (AUTHORIZED_TILES.includes(this.map[nextCellY][nextCellX])) { // If next case is an authorized block, we do the move
+            this.idle = false
+            move()
         }
-        // est-ce que la case suivante est libre ?
     }
     
     render(){

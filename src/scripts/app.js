@@ -1,6 +1,7 @@
 const CELL_SIZE = 64
 const SCALE = 1/2
 const TICK = 100
+const AUTHORIZED_TILES = [0, 4, 5]
 
 let game = new Game(),
     updater
