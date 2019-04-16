@@ -1,8 +1,8 @@
 const CELL_SIZE = 64
 const SCALE = 1
 const TICK = 100
-const AUTHORIZED_TILES = [0]
-const CAN_EXPLOSE_TILES = [1]
+const AUTHORIZED_TILES = [0, 5, 6]
+const CAN_EXPLOSE_TILES = [0, 1]
 let ELAPSED = 0
 
 
@@ -30,7 +30,7 @@ game.map.loadMap().then(() => {
                 break
             case " ":
                 if(game.players[0].canDropBomb()){
-                    game.items.push(new Item(game.players[0].bombType, game.players[0].x, game.players[0].y))
+                    game.items.push(new Bomb(game.players[0].bombType, game.players[0].x, game.players[0].y))
                 }
                 break
         }

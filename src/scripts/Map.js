@@ -30,4 +30,8 @@ class Map{
         }
     }
 
+    isBreakableAt(mx, my){ // stands for matrixX and matrixY
+        return CAN_EXPLOSE_TILES.includes(this.data.map[my][mx])
+    }
+
 }
