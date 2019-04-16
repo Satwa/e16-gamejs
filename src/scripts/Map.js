@@ -34,4 +34,9 @@ class Map{
         return CAN_EXPLOSE_TILES.includes(this.data.map[my][mx])
     }
 
+    setMap(maptype){
+        this.maptype = maptype
+        this.loadMap()
+    }
+
 }

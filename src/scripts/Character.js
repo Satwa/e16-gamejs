@@ -1,6 +1,6 @@
 class Character {
     
-    constructor(name, sprite, map){
+    constructor(name, sprite, map, x = CELL_SIZE, y = CELL_SIZE){
         this.name = name
         this.sprite = sprite
         
@@ -13,8 +13,8 @@ class Character {
         this.bombType = 0 // 0 default / 1 megabomb
         this.lastBombSent = 0 // compare either lastTick or timestamp or hasPreviousBombExploded
         
-        this.x = CELL_SIZE
-        this.y = CELL_SIZE
+        this.x = x
+        this.y = y
 
         // All sprites have the same pattern [WIP]
         const spriteHeight = 330,
@@ -26,6 +26,8 @@ class Character {
     }
 
     moveX(factor = 1) {
+        if(this.health === 0) return
+        
         let i = 0
         let move = () => {
             this.x = this.x + 2 * factor
@@ -49,6 +51,8 @@ class Character {
     }
 
     moveY(factor = 1) {
+        if(this.health === 0) return
+        
         let i = 0
         let move = () => {
             this.y = this.y + 2 * factor

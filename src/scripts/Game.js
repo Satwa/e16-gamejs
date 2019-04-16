@@ -9,8 +9,8 @@ class Game{
         this.context = this.canvas.getContext('2d')
     }
 
-    addPlayer(name, sprite){
-        this.players.push(new Character(name, sprite, this.map.data.map))
+    addPlayer(name, sprite, x, y){
+        this.players.push(new Character(name, sprite, this.map.data.map, x, y))
     }
 
     update() {
