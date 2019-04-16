@@ -1,7 +1,7 @@
 class Game{
 
-    constructor(){
-        this.map = new Map(0)
+    constructor(maptype = 0){
+        this.map = new Map(maptype)
         this.players = []
         this.items = []
 
@@ -69,7 +69,23 @@ class Game{
                         
                         if(localX >= 0 && localY >= 0){
                             if(this.map.isBreakableAt(localX, localY)) { // Check if block is breakable 
-                                this.map.data.map[localY][localX] = 0 // TODO: Random bonus
+                                if(this.map.data.map[localY][localX] !== 0){
+                                    let probability = Math.floor(Math.random() * 60)
+                                    if(probability < 10){
+                                        this.map.data.map[localY][localX] = 5 // Megabomb
+                                        
+                                        setTimeout(() => { // Reset case after a while
+                                            this.map.data.map[localY][localX] = 0
+                                        }, TICK * 50)
+                                    }else if(probability < 58){
+                                        this.map.data.map[localY][localX] = 0 // No bonus
+                                    }else{
+                                        this.map.data.map[localY][localX] = 6 // Bonus-Malus
+                                        setTimeout(() => { // Reset case after a while
+                                            this.map.data.map[localY][localX] = 0
+                                        }, TICK * 50)
+                                    }
+                                }
                                 this.items.push(new Particle(localX, localY))
                             }
     
@@ -77,9 +93,9 @@ class Game{
                                 let playerPosition = [player.x / CELL_SIZE, player.y / CELL_SIZE]
                                 if (positions.find(comparePosition(playerPosition)) !== undefined && !tookDamage) {
                                     tookDamage = true
-                                    item.type === 0 ? player.health-- : player.health = 0 // If bomb only life-1 / if megabomb instant-kill
+                                    item.type === 0 ? player.setHealth(-1) : player.setHealth(-3) // If bomb only life-1 / if megabomb instant-kill
                                     if (player.health === 0) {
-                                        alert("Player " + player.name + " died") // TODO: handle true death
+                                        alert("Player " + player.name + " died") // TODO: handle death correctly (fire event?)
                                     }
                                 }
                             }

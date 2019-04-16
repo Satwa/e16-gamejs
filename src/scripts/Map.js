@@ -36,7 +36,7 @@ class Map{
 
     setMap(maptype){
         this.maptype = maptype
-        this.loadMap()
+        this.loadMap() // This keeps the previous map sate in Character instance
     }
 
 }

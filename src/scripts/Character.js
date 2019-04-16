@@ -45,6 +45,12 @@ class Character {
         const nextCellX = (this.x + CELL_SIZE * factor) / CELL_SIZE,
               nextCellY = this.y / CELL_SIZE
         if(AUTHORIZED_TILES.includes(this.map[nextCellY][nextCellX])){ // If next case is an authorized block, we do the move
+            if (this.map[nextCellY][nextCellX] === 5) {
+                this.map[nextCellY][nextCellX] = 0
+                this.bombType = 1
+            } else if (this.map[nextCellY][nextCellX] === 6){
+                console.log("Bonus-Malus")
+            }
             this.idle = false
             move()
         }
@@ -73,6 +79,13 @@ class Character {
         const nextCellX = this.x / CELL_SIZE,
               nextCellY = (this.y + CELL_SIZE * factor) / CELL_SIZE
         if (AUTHORIZED_TILES.includes(this.map[nextCellY][nextCellX])) { // If next case is an authorized block, we do the move
+            if (this.map[nextCellY][nextCellX] === 5) {
+                this.map[nextCellY][nextCellX] = 0
+                this.setBombType(1)
+            } else if (this.map[nextCellY][nextCellX] === 6) {
+                this.map[nextCellY][nextCellX] = 0
+                this.setInvincible()
+            }
             this.idle = false
             move()
         }
@@ -82,7 +95,7 @@ class Character {
         this.isInvincible = true
         setTimeout(() => {
             this.isInvincible = false
-        }, TICK * 30) // Invincibility for 3s
+        }, TICK * 50) // Invincibility for 5s
     }
 
     setSlowness(){
@@ -92,12 +105,16 @@ class Character {
         }, TICK * 20)
     }
 
-    setBomb(bombType){
+    setHealth(deltaHealth){
+        !this.isInvincible ? this.health += deltaHealth : this.health
+    }
+
+    setBombType(bombType){
         this.bombType = bombType
     }
 
     canDropBomb(){
-        if(this.lastBombSent != 0 && ELAPSED < this.lastBombSent + TICK * 10){
+        if(this.lastBombSent != 0 && ELAPSED < this.lastBombSent + TICK * 5){
             return false
         }
         this.lastBombSent = ELAPSED

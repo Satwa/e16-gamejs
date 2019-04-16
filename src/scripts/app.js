@@ -2,11 +2,11 @@ const CELL_SIZE = 64
 const SCALE = .6
 const TICK = 100
 const AUTHORIZED_TILES = [0, 5, 6]
-const CAN_EXPLOSE_TILES = [0, 1]
+const CAN_EXPLOSE_TILES = [0, 1, 5, 6]
 
 // This is for playing locally 1v1
 let ELAPSED = 0
-let game = new Game(),
+let game = new Game(1),
     updater
 
 function contains(arr, element) {
@@ -47,6 +47,7 @@ game.map.loadMap().then(() => {
             case " ":
                 if(game.players[0].canDropBomb()){
                     game.items.push(new Bomb(game.players[0].bombType, game.players[0].x, game.players[0].y))
+                    game.players[0].setBombType(0)
                 }
                 break
             case "z":
@@ -72,6 +73,7 @@ game.map.loadMap().then(() => {
             case "r":
                 if (game.players[1].canDropBomb()) {
                     game.items.push(new Bomb(game.players[1].bombType, game.players[1].x, game.players[1].y))
+                    game.players[1].setBombType(0)
                 }
                 break
         }
