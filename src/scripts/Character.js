@@ -10,7 +10,7 @@ class Character {
         this.health = 3
         this.isInvincible = false
         this.hasSlowness = false
-        this.bombType = 1 // 0 default / 1 megabomb
+        this.bombType = 0 // 0 default / 1 megabomb
         this.lastBombSent = 0 // compare either lastTick or timestamp or hasPreviousBombExploded
         
         this.x = CELL_SIZE
