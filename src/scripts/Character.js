@@ -9,6 +9,7 @@ class Character {
         this.idle = true
         this.health = 3
         this.isInvincible = false
+        this.hasSlowness = false
         this.bombType = 0 // 0 default / 1 megabomb
         this.lastBombSent = 0 // compare either lastTick or timestamp or hasPreviousBombExploded
         
@@ -33,7 +34,7 @@ class Character {
             if (i != CELL_SIZE) {
                 setTimeout(() => {
                     move()
-                }, 5)
+                }, this.hasSlowness ? 5 : 2)
             }else{
                 this.idle = true
                 this.tile.currentFrame = 0
@@ -58,7 +59,7 @@ class Character {
             if (i != CELL_SIZE) {
                 setTimeout(() => {
                     move()
-                }, 5)
+                }, this.hasSlowness ? 5 : 2)
             } else {
                 this.idle = true
                 this.tile.currentFrame = 0
@@ -78,6 +79,13 @@ class Character {
         setTimeout(() => {
             this.isInvincible = false
         }, 3000) // Invincibility for 3s
+    }
+
+    setSlowness(){
+        this.hasSlowness = true
+        setTimeout(() => {
+            this.hasSlowness = false
+        }, 2000)
     }
 
     canDropBomb(){
