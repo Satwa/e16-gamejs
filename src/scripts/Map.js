@@ -1,7 +1,7 @@
 class Map{
 
     constructor(maptype = 0){
-        this.maptype = "0"
+        this.maptype = maptype
         this.data = null
         this.tile = null
         this.tileCellSize = CELL_SIZE

@@ -1,7 +1,7 @@
 class Game{
 
     constructor(){
-        this.map = new Map()
+        this.map = new Map(0)
         this.players = []
         this.items = []
 
@@ -47,43 +47,40 @@ class Game{
 
                     positions = [
                         [matrixX, matrixY],
-                        [matrixX - 3, matrixY],
                         [matrixX - 2, matrixY],
                         [matrixX - 1, matrixY],
                         [matrixX + 1, matrixY],
                         [matrixX + 2, matrixY],
-                        [matrixX + 3, matrixY],
-                        [matrixX, matrixY - 3],
                         [matrixX, matrixY - 2],
                         [matrixX, matrixY - 1],
                         [matrixX, matrixY + 1],
                         [matrixX, matrixY + 2],
-                        [matrixX, matrixY + 3]
-                    ] // If we meet a wall, we shouldn't look behind
+                    ]
                 }
 
-                if(item.type !== 2){
-                    console.log("not a particle")
+                if(item.type < 2){
                     // It's a bomb or a megabomb
+
                     for (let i = 0; i < positions.length; i++) {
                         let localX = positions[i][0],
-                            localY = positions[i][1]
+                            localY = positions[i][1],
+                            shouldNotBreak = [] // TODO: avoid breaking behind a wall
+
                         
-                        if(localX < 0 || localY < 0) return
-
-                        if (this.map.isBreakableAt(localX, localY)) { // Check if block is breakable 
-                            this.map.data.map[localY][localX] = 0 // TODO: Random bonus
-                            this.items.push(new Particle(localX, localY))
-                        }
-
-                        for (let player of this.players) {
-                            let playerPosition = [player.x / CELL_SIZE, player.y / CELL_SIZE]
-                            if (positions.find(comparePosition(playerPosition)) !== undefined && !tookDamage) {
-                                console.log("User lost one life")
-                                tookDamage = true
-                                player.health--
-                                if (player.health === 0) {
-                                    alert("Player " + player.name + " died") // TODO: handle true death
+                        if(localX >= 0 && localY >= 0){
+                            if(this.map.isBreakableAt(localX, localY)) { // Check if block is breakable 
+                                this.map.data.map[localY][localX] = 0 // TODO: Random bonus
+                                this.items.push(new Particle(localX, localY))
+                            }
+    
+                            for (let player of this.players) {
+                                let playerPosition = [player.x / CELL_SIZE, player.y / CELL_SIZE]
+                                if (positions.find(comparePosition(playerPosition)) !== undefined && !tookDamage) {
+                                    tookDamage = true
+                                    item.type === 0 ? player.health-- : player.health = 0 // If bomb only life-1 / if megabomb instant-kill
+                                    if (player.health === 0) {
+                                        alert("Player " + player.name + " died") // TODO: handle true death
+                                    }
                                 }
                             }
                         }

@@ -1,5 +1,5 @@
 {
-    "tile": "tiles/tile0.png",
+    "tile": "tiles/tile1.png",
     "tileRow": 7,
     "map": [
         [4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4],

@@ -10,7 +10,7 @@ class Character {
         this.health = 3
         this.isInvincible = false
         this.hasSlowness = false
-        this.bombType = 0 // 0 default / 1 megabomb
+        this.bombType = 1 // 0 default / 1 megabomb
         this.lastBombSent = 0 // compare either lastTick or timestamp or hasPreviousBombExploded
         
         this.x = CELL_SIZE
@@ -28,10 +28,10 @@ class Character {
     moveX(factor = 1) {
         let i = 0
         let move = () => {
-            this.x = this.x + 1 * factor
+            this.x = this.x + 2 * factor
             factor == -1 ? this.tile.setSrcY(2) : this.tile.setSrcY(0) // according to sprite
             i++
-            if (i != CELL_SIZE) {
+            if (i != CELL_SIZE/2) {
                 setTimeout(() => {
                     move()
                 }, this.hasSlowness ? 5 : 2)
@@ -51,12 +51,12 @@ class Character {
     moveY(factor = 1) {
         let i = 0
         let move = () => {
-            this.y = this.y + 1 * factor
+            this.y = this.y + 2 * factor
             
             i++
             factor == -1 ? this.tile.setSrcY(3) : this.tile.setSrcY(1) // according to sprite
             
-            if (i != CELL_SIZE) {
+            if (i != CELL_SIZE/2) {
                 setTimeout(() => {
                     move()
                 }, this.hasSlowness ? 5 : 2)
