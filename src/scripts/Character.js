@@ -91,7 +91,7 @@ class Character {
             this.hasSlowness = false
         }, TICK * 20)
     }
-    
+
     setBomb(bombType){
         this.bombType = bombType
     }
@@ -106,6 +106,11 @@ class Character {
 
     
     render(){
+        if(this.health === 0){
+            this.tile.setSrcY(4)
+            this.tile.currentFrame = 0
+        }
+
         this.tile.render(this.x, this.y, !this.idle)
     }
 }
