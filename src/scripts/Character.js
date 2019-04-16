@@ -96,15 +96,6 @@ class Character {
         return true
     }
 
-    // useStuff(){
-    //     if(this.stuff){
-    //         // User has stuff
-    //         // TODO: Check what is it and play behavior
-    //     }else{
-    //         return false
-    //     }
-    // }
-
     // setStuff(tileId){ // it overrides for now, TODO: should we refuse any other object?
     //     this.stuff = tileId //is it tileId or instance of a class?
     // }
