@@ -114,7 +114,7 @@ class Character {
     }
 
     canDropBomb(){
-        if(this.lastBombSent != 0 && ELAPSED < this.lastBombSent + TICK * 5){
+        if(this.lastBombSent != 0 && ELAPSED < this.lastBombSent + TICK * 5 || this.health === 0){
             return false
         }
         this.lastBombSent = ELAPSED
