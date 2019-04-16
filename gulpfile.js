@@ -30,18 +30,19 @@ gulp.task('res', function(){
 })
 
 
-gulp.task("watch", function () {
-
+gulp.task("watch", gulp.series('sass', 'js', 'res', function () {
     gulp.watch(['src/sass/*.scss', 'src/sass/**/*.scss'], gulp.series('sass'))
     gulp.watch(['src/scripts/*.js', 'src/scripts/**/*.js'], gulp.series('js'))
     gulp.watch(['src/res/**/*.*', 'src/res/**/**/*.*'], gulp.series('res'))
 
 
     const server = http.createServer((request, response) => {
-        return handler(request, response)
+        return handler(request, response, {
+            cleanUrls: false
+        })
     })
 
     server.listen(5000, () => {
         console.log('Running at http://localhost:5000')
     })
-})
+}))
