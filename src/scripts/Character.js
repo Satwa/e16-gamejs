@@ -9,6 +9,9 @@ class Character {
         this.idle = true
         this.stuff = null
         this.health = 3
+        this.isInvincible = false
+        this.bombType = 0 // 0 default / 1 megabomb
+        this.lastBombSent = 0 // compare either lastTick or timestamp or hasPreviousBombExploded
         
         this.x = CELL_SIZE
         this.y = CELL_SIZE
@@ -71,6 +74,26 @@ class Character {
         }
     }
     
+    setInvincible(){
+        this.isInvincible = true
+        setTimeout(() => {
+            this.isInvincible = false
+        }, 3000) // Invincibility for 3s
+    }
+
+    useStuff(){
+        if(this.stuff){
+            // User has stuff
+            // TODO: Check what is it and play behavior
+        }else{
+            return false
+        }
+    }
+
+    setStuff(tileId){ // it overrides for now, TODO: should we refuse any other object?
+        this.stuff = tileId //is it tileId or instance of a class?
+    }
+
     render(){
         this.tile.render(this.x, this.y, !this.idle)
     }
@@ -78,17 +101,6 @@ class Character {
 }
 
 /*
-moveX()
-moveY()
-useStuff()
-hasStuff()
-render()
-
-- health : 3
-- red bomb = -1
-- black bomb = -3
-- stuff
-- bombs
-- bonus
-- malus
+    - red bomb damage = -1
+    - black bomb damage = -3
 */

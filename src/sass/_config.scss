@@ -1,0 +1,22 @@
+// TODO: A configurer
+@font-face {
+    font-family: "SF Pro Text";
+    font-weight: normal;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+@font-face{
+    font-family: "SF Pro Text";
+    font-weight: bold;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff");
+}
+
+$font-primary: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Apple Legacy Chevron", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$color-primary: rgb(0, 112, 201);
+$color-primary-light: rgb(4,128,226);
+$card-background: rgba(0,0,0,0.8);
+$background-color: #fff;
+$background-grey: #F2F2F2;
+$text-color-clear: #fff;
+$text-color-dark: #111;
+$text-footer-color: #555;
+$text-color-secondary-dark: rgba(51,51,51,0.6);
