@@ -7,7 +7,6 @@ class Character {
         this.map = map
         
         this.idle = true
-        this.stuff = null
         this.health = 3
         this.isInvincible = false
         this.bombType = 0 // 0 default / 1 megabomb
@@ -17,10 +16,10 @@ class Character {
         this.y = CELL_SIZE
 
         // All sprites have the same pattern [WIP]
-        const spriteHeight = 64,
-              spriteWidth = 435,
-              row = 1,
-              col = 8
+        const spriteHeight = 330,
+              spriteWidth = 192,
+              row = 5,
+              col = 3
         
         this.tile = new Tile("players/" + this.sprite + ".png", spriteWidth, spriteHeight, row, col)
     }
@@ -81,18 +80,26 @@ class Character {
         }, 3000) // Invincibility for 3s
     }
 
-    useStuff(){
-        if(this.stuff){
-            // User has stuff
-            // TODO: Check what is it and play behavior
-        }else{
+    canDropBomb(){
+        if(this.lastBombSent != 0 && ELAPSED < this.lastBombSent + TICK * 10){
             return false
         }
+        this.lastBombSent = ELAPSED
+        return true
     }
 
-    setStuff(tileId){ // it overrides for now, TODO: should we refuse any other object?
-        this.stuff = tileId //is it tileId or instance of a class?
-    }
+    // useStuff(){
+    //     if(this.stuff){
+    //         // User has stuff
+    //         // TODO: Check what is it and play behavior
+    //     }else{
+    //         return false
+    //     }
+    // }
+
+    // setStuff(tileId){ // it overrides for now, TODO: should we refuse any other object?
+    //     this.stuff = tileId //is it tileId or instance of a class?
+    // }
 
     render(){
         this.tile.render(this.x, this.y, !this.idle)
