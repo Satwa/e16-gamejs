@@ -27,7 +27,7 @@ class Character {
 
     moveX(factor = 1) {
         if(this.health === 0) return
-        
+
         let i = 0
         let move = () => {
             this.x = this.x + 2 * factor
@@ -52,7 +52,7 @@ class Character {
 
     moveY(factor = 1) {
         if(this.health === 0) return
-        
+
         let i = 0
         let move = () => {
             this.y = this.y + 2 * factor
@@ -82,14 +82,18 @@ class Character {
         this.isInvincible = true
         setTimeout(() => {
             this.isInvincible = false
-        }, 3000) // Invincibility for 3s
+        }, TICK * 30) // Invincibility for 3s
     }
 
     setSlowness(){
         this.hasSlowness = true
         setTimeout(() => {
             this.hasSlowness = false
-        }, 2000)
+        }, TICK * 20)
+    }
+    
+    setBomb(bombType){
+        this.bombType = bombType
     }
 
     canDropBomb(){
@@ -100,17 +104,8 @@ class Character {
         return true
     }
 
-    // setStuff(tileId){ // it overrides for now, TODO: should we refuse any other object?
-    //     this.stuff = tileId //is it tileId or instance of a class?
-    // }
-
+    
     render(){
         this.tile.render(this.x, this.y, !this.idle)
     }
-    
 }
-
-/*
-    - red bomb damage = -1
-    - black bomb damage = -3
-*/
