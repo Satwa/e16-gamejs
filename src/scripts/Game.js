@@ -67,7 +67,7 @@ class Game{
                             shouldNotBreak = [] // TODO: avoid breaking behind a wall
 
                         
-                        if(localX >= 0 && localY >= 0){
+                        if(localX >= 0 && localY >= 0 && localY < this.map.data.map.length && localX < this.map.data.map[0].length){
                             if(this.map.isBreakableAt(localX, localY)) { // Check if block is breakable 
                                 if(this.map.data.map[localY][localX] !== 0){
                                     let probability = Math.floor(Math.random() * 60)
