@@ -30,7 +30,7 @@ function forceRoomStart(){
 
 
 function prepareMultiplayer(room){
-    socket = io('http://localhost:5042') // 'https://e16-gameserver.herokuapp.com'
+    socket = io('https://e16-gameserver.herokuapp.com') // 'http://localhost:5042'
 
     socket.emit("joinroom", { room: room })
 
@@ -40,6 +40,7 @@ function prepareMultiplayer(room){
         game.map.loadMap().then(function() {
             for(let [index, player] of room.players.entries()){
                 game.addPlayer(player.name, index, player.x * CELL_SIZE, player.y * CELL_SIZE)
+                game.players[game.getPlayerByName(player.name)].health = player.health // Update player that left before I arrive
             }
             whoAmI = room.players.length - 1
 

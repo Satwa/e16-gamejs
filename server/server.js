@@ -1,6 +1,6 @@
 const http = require('http')
 
-const io = require("socket.io")(process.env.PORT) // 
+const io = require("socket.io")(process.env.PORT) // process.env.PORT || 5042
 const fs = require('fs')
 
 const TICK = 100
@@ -41,15 +41,15 @@ io.sockets.on("connection", function(socket) {
     socket.on("joinroom", function(data) {
         currentRoom = data.room
 
-        if(rooms[data.room]){
+        if(rooms[data.room]){ // Room exists
             let positions = [
                 [1, 1],
                 [rooms[data.room].map[0].length - 2, 1],
                 [rooms[data.room].map[0].length - 2, rooms[data.room].map.length - 2],
                 [1, rooms[data.room].map.length - 2],
             ]
-            // Room exists
-            if(rooms[data.room].players.length != 4 && rooms[data.room].started == false){ // If lobby not full 
+
+            if(rooms[data.room].players.length != 4 && !rooms[data.room].started){ // If lobby not full 
                 // Add player
                 playerPos = rooms[data.room].players.length
                 rooms[data.room].players.push({
@@ -61,6 +61,11 @@ io.sockets.on("connection", function(socket) {
                     isInvincible: false
                 })
                 socket.broadcast.to(currentRoom).emit('newplayer', rooms[data.room].players[rooms[data.room].players.length - 1])
+                
+                if (rooms[data.room].players.length === 4 && !rooms[data.room].started) { // auto-start
+                    rooms[currentRoom].started = true
+                    io.in(currentRoom).emit("started")
+                }
             }else{
                 rooms[data.room].spectators.push(currentUser.id)
             }
@@ -103,6 +108,7 @@ io.sockets.on("connection", function(socket) {
     })
 
     socket.on('forcestart', function () {
+        if (!rooms[currentRoom]) return
         if (currentUser.id == rooms[currentRoom].players[0].name) {
             rooms[currentRoom].started = true
             io.in(currentRoom).emit("started")
@@ -116,6 +122,7 @@ io.sockets.on("connection", function(socket) {
             - factor
     */
     socket.on("askformove", function(data){
+        if(!rooms[currentRoom]) return
         if(rooms[currentRoom].started && !rooms[currentRoom].spectators.includes(currentUser.id)){ 
             // Test place on map
             let nextCellX = rooms[currentRoom].players[playerPos].x,
@@ -171,12 +178,15 @@ io.sockets.on("connection", function(socket) {
     })
 
     socket.on("askforbomb", function(data){
+        if (!rooms[currentRoom]) return
+
         function comparePosition(playerPos) {
             return pos => (pos[0] === playerPos[0] && pos[1] === playerPos[1])
         }
 
         function isBreakableAt(mx, my){ // stands for matrixX and matrixY
             if (mx > rooms[currentRoom].map[0].length - 1 || my > rooms[currentRoom].map.length - 1 || mx < 0 || my < 0) return false
+            if (!rooms[currentRoom].map[my]) return false
             return CAN_EXPLOSE_TILES.includes(rooms[currentRoom].map[my][mx])
         }
 
