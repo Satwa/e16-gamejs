@@ -12,7 +12,7 @@ gulp.task('sass', function () {
 })
 
 gulp.task('js', function () {
-    return gulp.src('src/scripts/*.js')
+    return gulp.src(['src/scripts/class/*.js', "src/scripts/app.js"])
         .pipe(concat('app.js')) // https://www.npmjs.com/package/gulp-concat
         .pipe(minify({
             ext: {
