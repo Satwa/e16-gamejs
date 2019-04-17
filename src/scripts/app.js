@@ -4,7 +4,7 @@ const TICK = 100
 const AUTHORIZED_TILES = [0, 5, 6]
 const CAN_EXPLOSE_TILES = [0, 1, 5, 6]
 
-let game, updater, ELAPSED = 0, socket, whoAmI = -1
+let game, updater, ELAPSED = 0, socket, whoAmI
 
 // loadGameLocally()
 
@@ -37,7 +37,9 @@ function prepareMultiplayer(room){
     socket.on("loadroom", function(room) {
         console.log(room)
         game = new Game(room.maptype)
-        game.map.loadMap().then(() => {
+        game.map.loadMap().then(function() {
+            game.update()
+
             for(let [index, player] of room.players.entries()){
                 game.addPlayer(player.name, index, player.x * CELL_SIZE, player.y * CELL_SIZE)
             }
@@ -56,6 +58,8 @@ function prepareMultiplayer(room){
     
     socket.on("started", function() {
         loadGameOnline()
+
+        console.log("Started")
 
         updater = setInterval(() => {
             ELAPSED += TICK
@@ -105,7 +109,7 @@ function loadGameLocally(){
     game = new Game()
     game.map.loadMap().then(() => {
         game.addPlayer("Grégoire", 2, CELL_SIZE, CELL_SIZE)
-        game.addPlayer("Léa", 7, CELL_SIZE * 13, CELL_SIZE * 6)
+        game.addPlayer("Léa", 7, CELL_SIZE * (game.map.data.map[0].length - 2), CELL_SIZE * (game.map.data.map.length - 2))
 
         document.addEventListener("keydown", (e) => {
             e.preventDefault()

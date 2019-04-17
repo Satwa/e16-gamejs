@@ -88,7 +88,9 @@ io.sockets.on("connection", function(socket) {
 
     socket.on('forcestart', function(){
         if(currentUser.id == rooms[currentRoom].players[0].name){
+            rooms[currentRoom].started = true
             io.to(currentRoom).emit("started")
+            console.log("Room #" + currentRoom + " started")
         }
     })
 
