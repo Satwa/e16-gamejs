@@ -4,16 +4,9 @@ const TICK = 100
 const AUTHORIZED_TILES = [0, 5, 6]
 const CAN_EXPLOSE_TILES = [0, 1, 5, 6]
 
-<<<<<<< HEAD
-// This is for playing locally 1v1
-let ELAPSED = 0
-let game = new Game(0),
-    updater
-=======
 let game, updater, ELAPSED = 0, socket, whoAmI
 
 // loadGameLocally()
->>>>>>> 0a43b5fcd1ab4f50923fb460b6c3040bf16b7d2d
 
 function contains(arr, element) {
     for (var i = 0; i < arr.length; i++) {
