@@ -69,29 +69,53 @@ function prepareMultiplayer(room){
 }
 
 // in a multiplayer context
-function loadGameOnline(){
+function loadGameOnline() {
+
+    socket.on("playermove", function (data) {
+        switch (data.move.axis) {
+            case 'x':
+                game.players[game.getPlayerByName(data.player_name)].moveX(data.move.factor)
+                break
+            case 'y':
+                game.players[game.getPlayerByName(data.player_name)].moveY(data.move.factor)
+                break
+        }
+    })
+
     document.addEventListener("keydown", (e) => {
         e.preventDefault()
 
         switch (e.key) { // TODO: User won't always be players[1]
             case "ArrowUp":
                 if (game.players[whoAmI].idle) {
-                    game.players[whoAmI].moveY(-1)
+                    socket.emit("askformove", {
+                        axis: 'y',
+                        factor: -1
+                    })
                 }
                 break
             case "ArrowDown":
                 if (game.players[whoAmI].idle) {
-                    game.players[whoAmI].moveY()
+                    socket.emit("askformove", {
+                        axis: 'y',
+                        factor: 1
+                    })
                 }
                 break
             case "ArrowLeft":
                 if (game.players[whoAmI].idle) {
-                    game.players[whoAmI].moveX(-1)
+                    socket.emit("askformove", {
+                        axis: 'x',
+                        factor: -1
+                    })
                 }
                 break
             case "ArrowRight":
                 if (game.players[whoAmI].idle) {
-                    game.players[whoAmI].moveX()
+                    socket.emit("askformove", {
+                        axis: 'x',
+                        factor: 1
+                    })
                 }
                 break
             case " ":
