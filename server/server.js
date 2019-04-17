@@ -1,10 +1,6 @@
 const http = require('http')
 
-let httpServer = http.createServer(function(req, res) {
-    console.log("User reached the page")
-})
-httpServer.listen(80)
-const io = require("socket.io")(httpServer)
+const io = require("socket.io")(process.env.PORT || 5042)
 const fs = require('fs')
 
 const TICK = 100
