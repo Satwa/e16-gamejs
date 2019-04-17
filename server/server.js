@@ -19,10 +19,10 @@ let players = [],
 */
 
 // Preload all maps
-const mapsFiles = fs.readdirSync('./maps/')
+const mapsFiles = fs.readdirSync('./server/maps/')
 const MAP_LENGTH = mapsFiles.length
 for(mapName of mapsFiles){
-    const mapFile = String(fs.readFileSync('./maps/' + mapName))
+    const mapFile = String(fs.readFileSync('./server/maps/' + mapName))
 
     maps.push(JSON.parse(mapFile))
 }
