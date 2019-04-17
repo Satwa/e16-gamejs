@@ -1,6 +1,6 @@
 const http = require('http')
 
-const io = require("socket.io")(process.env.PORT || 5042)
+const io = require("socket.io")(process.env.PORT) // 
 const fs = require('fs')
 
 const TICK = 100
@@ -57,7 +57,7 @@ io.sockets.on("connection", function(socket) {
                     y: positions[rooms[data.room].players.length][1],
                     name: currentUser.id,
                     health: 3,
-                    bombType: 0,
+                    bombs: 0,
                     isInvincible: false
                 })
                 socket.broadcast.to(currentRoom).emit('newplayer', rooms[data.room].players[rooms[data.room].players.length - 1])
@@ -87,7 +87,7 @@ io.sockets.on("connection", function(socket) {
                 y: positions[rooms[data.room].players.length][1],
                 name: currentUser.id,
                 health: 3,
-                bombType: 0,
+                bombs: 0,
                 isInvincible: false
             })
 
@@ -130,7 +130,7 @@ io.sockets.on("connection", function(socket) {
             if (AUTHORIZED_TILES.includes(rooms[currentRoom].map[nextCellY][nextCellX]) && rooms[currentRoom].players[playerPos].health > 0){
                 if (rooms[currentRoom].map[nextCellY][nextCellX] === 5){
                     rooms[currentRoom].map[nextCellY][nextCellX] = 0
-                    rooms[currentRoom].players[playerPos].bombType = 1
+                    rooms[currentRoom].players[playerPos].bombs++
                     io.in(currentRoom).emit('playerstatus', {
                         players: rooms[currentRoom].players
                     })
@@ -187,15 +187,7 @@ io.sockets.on("connection", function(socket) {
                     tookDamage = false,
                     positions = []
 
-                if (rooms[currentRoom].players[playerPos].bombType === 0) {
-                    positions = [
-                        [matrixX, matrixY],
-                        [matrixX - 1, matrixY],
-                        [matrixX + 1, matrixY],
-                        [matrixX, matrixY - 1],
-                        [matrixX, matrixY + 1]
-                    ]
-                }else{
+                if(rooms[currentRoom].players[playerPos].bombs > 0 && data.type === 1) {
                     positions = [
                         [matrixX, matrixY],
                         [matrixX - 2, matrixY],
@@ -206,6 +198,15 @@ io.sockets.on("connection", function(socket) {
                         [matrixX, matrixY - 1],
                         [matrixX, matrixY + 1],
                         [matrixX, matrixY + 2],
+                    ]
+                    rooms[currentRoom].players[playerPos].bombs--
+                } else if (data.type === 0){
+                    positions = [
+                        [matrixX, matrixY],
+                        [matrixX - 1, matrixY],
+                        [matrixX + 1, matrixY],
+                        [matrixX, matrixY - 1],
+                        [matrixX, matrixY + 1]
                     ]
                 }
 
@@ -241,13 +242,11 @@ io.sockets.on("connection", function(socket) {
                             }
                         }
 
-                        rooms[currentRoom].players[playerPos].bombType = 0
-
                         for (let player of rooms[currentRoom].players) {
                             let playerPosition = [player.x, player.y]
                             if (positions.find(comparePosition(playerPosition)) !== undefined && !tookDamage) {
                                 tookDamage = true
-                                rooms[currentRoom].players[playerPos].bombType === 0 ? --player.health : player.health = 0 // If bomb only life-1 / if megabomb instant-kill
+                                rooms[currentRoom].players[playerPos].bombs > 0 && data.type === 1 ? player.health = 0 : --player.health // If bomb only life-1 / if megabomb instant-kill
                             }
                         }
                     }
@@ -263,7 +262,7 @@ io.sockets.on("connection", function(socket) {
 
             io.in(currentRoom).emit('bombdrop', {
                 player_name: currentUser.id,
-                type: rooms[currentRoom].players[playerPos].bombType,
+                type: rooms[currentRoom].players[playerPos].bombs > 0 && data.type === 1 ? 1 : 0,
                 x: data.x,
                 y: data.y
             })
@@ -271,6 +270,7 @@ io.sockets.on("connection", function(socket) {
     })
 
     socket.on('disconnect', function () {
+        if (!rooms[currentRoom]) return
         if(!rooms[currentRoom].spectators.includes(currentUser.id)){ // Current user is not a spectator so she/he is a player for sure
             rooms[currentRoom].players[playerPos].health = 0
             io.in(currentRoom).emit('playerstatus', {

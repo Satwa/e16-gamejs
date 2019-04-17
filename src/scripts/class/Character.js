@@ -10,7 +10,7 @@ class Character {
         this.health = 3
         this.isInvincible = false
         this.hasSlowness = false
-        this.bombType = 0 // 0 default / 1 megabomb
+        this.bombs = 0 // 0 default / >0 megabomb
         this.lastBombSent = 0 // compare either lastTick or timestamp or hasPreviousBombExploded
         
         this.x = x
@@ -47,7 +47,7 @@ class Character {
         if(AUTHORIZED_TILES.includes(this.map[nextCellY][nextCellX])){ // If next case is an authorized block, we do the move
             if (this.map[nextCellY][nextCellX] === 5) {
                 this.map[nextCellY][nextCellX] = 0
-                this.bombType = 1
+                this.bombs++
             } else if (this.map[nextCellY][nextCellX] === 6){
                 this.map[nextCellY][nextCellX] = 0
                 this.setInvincible()
@@ -82,7 +82,7 @@ class Character {
         if (AUTHORIZED_TILES.includes(this.map[nextCellY][nextCellX])) { // If next case is an authorized block, we do the move
             if (this.map[nextCellY][nextCellX] === 5) {
                 this.map[nextCellY][nextCellX] = 0
-                this.setBombType(1)
+                this.bombs++
             } else if (this.map[nextCellY][nextCellX] === 6) {
                 this.map[nextCellY][nextCellX] = 0
                 this.setInvincible()
@@ -108,10 +108,6 @@ class Character {
 
     setHealth(deltaHealth){
         !this.isInvincible ? this.health += deltaHealth : this.health
-    }
-
-    setBombType(bombType){
-        this.bombType = bombType
     }
 
     canDropBomb(){
