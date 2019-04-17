@@ -13,6 +13,13 @@ class Game{
         this.players.push(new Character(name, sprite, this.map.data.map, x, y))
     }
 
+    getPlayerByName(name){
+        for(let [index, player] of this.players.entries()){
+            if(player.name == name) return index
+        }
+        return -1
+    }
+
     update() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
 

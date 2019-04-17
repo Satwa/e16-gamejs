@@ -26,7 +26,7 @@ class Character {
     }
 
     moveX(factor = 1) {
-        if(this.health === 0) return
+        if(this.health <= 0) return
 
         let i = 0
         let move = () => {
@@ -49,7 +49,8 @@ class Character {
                 this.map[nextCellY][nextCellX] = 0
                 this.bombType = 1
             } else if (this.map[nextCellY][nextCellX] === 6){
-                console.log("Bonus-Malus")
+                this.map[nextCellY][nextCellX] = 0
+                this.setInvincible()
             }
             this.idle = false
             move()
@@ -57,7 +58,7 @@ class Character {
     }
 
     moveY(factor = 1) {
-        if(this.health === 0) return
+        if(this.health <= 0) return
 
         let i = 0
         let move = () => {
@@ -114,7 +115,7 @@ class Character {
     }
 
     canDropBomb(){
-        if(this.lastBombSent != 0 && ELAPSED < this.lastBombSent + TICK * 5 || this.health === 0){
+        if(this.lastBombSent != 0 && ELAPSED < this.lastBombSent + TICK * 5 || this.health <= 0){
             return false
         }
         this.lastBombSent = ELAPSED
@@ -123,7 +124,7 @@ class Character {
 
     
     render(){
-        if(this.health === 0){
+        if(this.health <= 0){
             this.tile.setSrcY(4)
             this.tile.currentFrame = 0
         }
