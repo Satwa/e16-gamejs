@@ -30,7 +30,7 @@ function forceRoomStart(){
 
 
 function prepareMultiplayer(room){
-    socket = io('http://localhost:5042')
+    socket = io('https://e16-gameserver.herokuapp.com:5042')
 
     socket.emit("joinroom", { room: room })
 
