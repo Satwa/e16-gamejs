@@ -1,13 +1,9 @@
-class Bomb {
-    constructor(type, x, y/*, catcheable = false*/){
+class Bomb extends Entity{
+    constructor(type, x, y){
+        super(Math.ceil(x / CELL_SIZE) * CELL_SIZE, Math.ceil(y / CELL_SIZE) * CELL_SIZE, new Tile("tiles/items.png", 256, 128, 2, 4))
         this.type = type
         this.explodeAfter = TICK * 20
-        // this.catcheable = catcheable // is this an object we can add to stuff or a bomb that's gonna explode?
 
-        this.x = Math.ceil(x / CELL_SIZE) * CELL_SIZE
-        this.y = Math.ceil(y / CELL_SIZE) * CELL_SIZE
-
-        this.tile = new Tile("tiles/items.png", 256, 128, 2, 4)
 
         this.readyToDelete = false
 
@@ -19,7 +15,7 @@ class Bomb {
     render(){
         if(!this.readyToDelete){
             this.tile.currentFrame = this.type
-            this.tile.render(this.x, this.y, false)
+            super.render(false)
         }
     }
     

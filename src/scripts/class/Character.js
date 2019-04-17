@@ -1,6 +1,9 @@
-class Character {
+class Character extends Entity{
     
-    constructor(name, sprite, map, x = CELL_SIZE, y = CELL_SIZE){
+    constructor(name, sprite, map, x = CELL_SIZE, y = CELL_SIZE) {
+        // All sprites have the same pattern [WIP]
+        super(x, y, new Tile("players/" + sprite + ".png", 192, 330, 5, 3))
+
         this.name = name
         this.sprite = sprite
         
@@ -12,17 +15,6 @@ class Character {
         this.hasSlowness = false
         this.bombs = 0 // 0 default / >0 megabomb
         this.lastBombSent = 0 // compare either lastTick or timestamp or hasPreviousBombExploded
-        
-        this.x = x
-        this.y = y
-
-        // All sprites have the same pattern [WIP]
-        const spriteHeight = 330,
-              spriteWidth = 192,
-              row = 5,
-              col = 3
-        
-        this.tile = new Tile("players/" + this.sprite + ".png", spriteWidth, spriteHeight, row, col)
     }
 
     moveX(factor = 1) {
@@ -125,6 +117,6 @@ class Character {
             this.tile.currentFrame = 0
         }
 
-        this.tile.render(this.x, this.y, !this.idle)
+        super.render(!this.idle)
     }
 }
