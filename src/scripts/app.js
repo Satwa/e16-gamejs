@@ -1,12 +1,12 @@
 const CELL_SIZE = 64
-const SCALE = .6
+const SCALE = .7
 const TICK = 100
 const AUTHORIZED_TILES = [0, 5, 6]
 const CAN_EXPLOSE_TILES = [0, 1, 5, 6]
 
 // This is for playing locally 1v1
 let ELAPSED = 0
-let game = new Game(1),
+let game = new Game(0),
     updater
 
 function contains(arr, element) {
