@@ -1,7 +1,6 @@
 const io = require("socket.io")(5042)
 const fs = require('fs')
 
-const MAP_LENGTH = 2
 const TICK = 100
 const AUTHORIZED_TILES = [0, 5, 6]
 const CAN_EXPLOSE_TILES = [0, 1, 5, 6]
@@ -21,6 +20,7 @@ let players = [],
 
 // Preload all maps
 const mapsFiles = fs.readdirSync('./maps/')
+const MAP_LENGTH = mapsFiles.length
 for(mapName of mapsFiles){
     const mapFile = String(fs.readFileSync('./maps/' + mapName))
 
