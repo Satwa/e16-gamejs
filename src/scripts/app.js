@@ -49,6 +49,7 @@ function prepareMultiplayer(room){
 
             if(room.started){
                 loadGameOnline()
+                game.map.data.map = room.map.slice()
                 updater = setInterval(() => {
                     ELAPSED += TICK
                     game.update(true)

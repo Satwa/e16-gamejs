@@ -126,6 +126,35 @@ io.sockets.on("connection", function(socket) {
             }
             
             if (AUTHORIZED_TILES.includes(rooms[currentRoom].map[nextCellY][nextCellX]) && rooms[currentRoom].players[playerPos].health > 0){
+                if (rooms[currentRoom].map[nextCellY][nextCellX] === 5){
+                    rooms[currentRoom].map[nextCellY][nextCellX] = 0
+                    rooms[currentRoom].players[playerPos].bombType = 1
+                    io.in(currentRoom).emit('playerstatus', {
+                        players: rooms[currentRoom].players
+                    })
+
+                    io.in(currentRoom).emit('mapedit', {
+                        map: rooms[currentRoom].map
+                    })
+                } else if (rooms[currentRoom].map[nextCellY][nextCellX] === 6){
+                    rooms[currentRoom].map[nextCellY][nextCellX] = 0
+                    rooms[currentRoom].players[playerPos].isInvincible = true
+
+                    setTimeout(() => {
+                        rooms[currentRoom].players[playerPos].isInvincible = false
+                        io.in(currentRoom).emit('playerstatus', {
+                            players: rooms[currentRoom].players
+                        })
+                    }, TICK * 50)
+
+                    io.in(currentRoom).emit('playerstatus', {
+                        players: rooms[currentRoom].players
+                    })
+
+                    io.in(currentRoom).emit('mapedit', {
+                        map: rooms[currentRoom].map
+                    })
+                }
                 rooms[currentRoom].players[playerPos].x = nextCellX
                 rooms[currentRoom].players[playerPos].y = nextCellY
                 io.in(currentRoom).emit('playermove', { 
@@ -145,6 +174,7 @@ io.sockets.on("connection", function(socket) {
         }
 
         function isBreakableAt(mx, my){ // stands for matrixX and matrixY
+            if (mx > rooms[currentRoom].map[0].length - 1 || my > rooms[currentRoom].map.length - 1 || mx < 0 || my < 0) return false
             return CAN_EXPLOSE_TILES.includes(rooms[currentRoom].map[my][mx])
         }
 
@@ -208,6 +238,8 @@ io.sockets.on("connection", function(socket) {
                                 }
                             }
                         }
+
+                        rooms[currentRoom].players[playerPos].bombType = 0
 
                         for (let player of rooms[currentRoom].players) {
                             let playerPosition = [player.x, player.y]
