@@ -46,6 +46,14 @@ function prepareMultiplayer(room){
             whoAmI = room.players.length - 1
 
             game.update()
+
+            if(room.started){
+                loadGameOnline()
+                updater = setInterval(() => {
+                    ELAPSED += TICK
+                    game.update(true)
+                }, TICK)
+            }
         })
     })
     
@@ -63,14 +71,13 @@ function prepareMultiplayer(room){
 
         updater = setInterval(() => {
             ELAPSED += TICK
-            game.update()
+            game.update(true)
         }, TICK)
     })
 }
 
 // in a multiplayer context
 function loadGameOnline() {
-
     socket.on("playermove", function (data) {
         switch (data.move.axis) {
             case 'x':
@@ -79,6 +86,26 @@ function loadGameOnline() {
             case 'y':
                 game.players[game.getPlayerByName(data.player_name)].moveY(data.move.factor)
                 break
+        }
+    })
+
+    socket.on("bombdrop", function(data){
+        game.items.push(new Bomb(data.type, data.x * CELL_SIZE, data.y * CELL_SIZE))
+    })
+
+    socket.on("mapedit", function(data){
+        game.map.data = { map: data.map.slice() }
+        for(let player of game.players){
+            player.map = data.map.slice()
+        }
+    })
+
+    socket.on("playerstatus", function(data){
+        for(let player of data.players){
+            game.players[game.getPlayerByName(player.name)].health = player.health
+            game.players[game.getPlayerByName(player.name)].bombType = player.bombType
+            game.players[game.getPlayerByName(player.name)].bombType = player.bombType
+            game.players[game.getPlayerByName(player.name)].isInvincible = player.isInvincible
         }
     })
 
@@ -120,8 +147,13 @@ function loadGameOnline() {
                 break
             case " ":
                 if (game.players[whoAmI].canDropBomb()) {
-                    game.items.push(new Bomb(game.players[whoAmI].bombType, game.players[whoAmI].x, game.players[whoAmI].y))
-                    game.players[whoAmI].setBombType(0)
+                    socket.emit("askforbomb", {
+                        type: game.players[whoAmI].bombType,
+                        x: game.players[whoAmI].x / 64,
+                        y: game.players[whoAmI].y / 64
+                    }, function(){
+                        game.players[whoAmI].setBombType(0)
+                    })
                 }
                 break
         }

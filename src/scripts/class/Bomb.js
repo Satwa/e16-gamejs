@@ -1,7 +1,7 @@
 class Bomb {
     constructor(type, x, y/*, catcheable = false*/){
         this.type = type
-        this.explodeAfter = TICK * 10
+        this.explodeAfter = TICK * 20
         // this.catcheable = catcheable // is this an object we can add to stuff or a bomb that's gonna explode?
 
         this.x = Math.ceil(x / CELL_SIZE) * CELL_SIZE

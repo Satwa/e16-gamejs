@@ -20,7 +20,7 @@ class Game{
         return -1
     }
 
-    update() {
+    update(multiplayer = false) {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         this.map.render()
@@ -76,7 +76,7 @@ class Game{
                         
                         if(localX >= 0 && localY >= 0 && localY < this.map.data.map.length && localX < this.map.data.map[0].length){
                             if(this.map.isBreakableAt(localX, localY)) { // Check if block is breakable 
-                                if(this.map.data.map[localY][localX] !== 0){
+                                if (this.map.data.map[localY][localX] !== 0 && !multiplayer){
                                     let probability = Math.floor(Math.random() * 60)
                                     if(probability < 10){
                                         this.map.data.map[localY][localX] = 5 // Megabomb
