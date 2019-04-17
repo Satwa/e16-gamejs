@@ -30,7 +30,7 @@ function forceRoomStart(){
 
 
 function prepareMultiplayer(room){
-    socket = io('https://e16-gameserver.herokuapp.com')
+    socket = io('http://localhost:5042') // 'https://e16-gameserver.herokuapp.com'
 
     socket.emit("joinroom", { room: room })
 
@@ -38,47 +38,32 @@ function prepareMultiplayer(room){
         console.log(room)
         game = new Game(room.maptype)
         game.map.loadMap().then(function() {
-            game.update()
-
             for(let [index, player] of room.players.entries()){
                 game.addPlayer(player.name, index, player.x * CELL_SIZE, player.y * CELL_SIZE)
             }
             whoAmI = room.players.length - 1
 
-            game.update()
-
-            if(room.started){
-                loadGameOnline()
-                game.map.data.map = room.map.slice()
-                updater = setInterval(() => {
-                    ELAPSED += TICK
-                    game.update(true)
-                }, TICK)
-            }
+            loadGameOnline()
+            game.map.data.map = room.map.slice()
+            updater = setInterval(() => {
+                ELAPSED += TICK
+                game.update(true)
+            }, TICK)
         })
-    })
-    
-    socket.on("newplayer", function(data) {
-        console.log("New player to add")
-        game.addPlayer(data.name, game.players.length, data.x * CELL_SIZE, data.y * CELL_SIZE)
-        
-        game.update()
-    })
-    
-    socket.on("started", function() {
-        loadGameOnline()
-
-        console.log("Started")
-
-        updater = setInterval(() => {
-            ELAPSED += TICK
-            game.update(true)
-        }, TICK)
     })
 }
 
 // in a multiplayer context
 function loadGameOnline() {
+    socket.on("newplayer", function (data) {
+        console.log("New player to add")
+        game.addPlayer(data.name, game.players.length, data.x * CELL_SIZE, data.y * CELL_SIZE)
+    })
+
+    socket.on("started", function () {
+        console.log("Started")
+        ELAPSED = 0
+    })
     socket.on("playermove", function (data) {
         switch (data.move.axis) {
             case 'x':
@@ -104,8 +89,8 @@ function loadGameOnline() {
     socket.on("playerstatus", function(data){
         for(let player of data.players){
             game.players[game.getPlayerByName(player.name)].health = player.health
-            game.players[game.getPlayerByName(player.name)].bombType = player.bombType
-            game.players[game.getPlayerByName(player.name)].bombType = player.bombType
+            game.players[game.getPlayerByName(player.name)].bombs = player.bombs
+            game.players[game.getPlayerByName(player.name)].bombs = player.bombs
             game.players[game.getPlayerByName(player.name)].isInvincible = player.isInvincible
         }
     })
@@ -114,6 +99,7 @@ function loadGameOnline() {
         e.preventDefault()
 
         switch (e.key) { // TODO: User won't always be players[1]
+            case "z":
             case "ArrowUp":
                 if (game.players[whoAmI].idle) {
                     socket.emit("askformove", {
@@ -122,6 +108,7 @@ function loadGameOnline() {
                     })
                 }
                 break
+            case "s":
             case "ArrowDown":
                 if (game.players[whoAmI].idle) {
                     socket.emit("askformove", {
@@ -130,6 +117,7 @@ function loadGameOnline() {
                     })
                 }
                 break
+            case "q":
             case "ArrowLeft":
                 if (game.players[whoAmI].idle) {
                     socket.emit("askformove", {
@@ -138,6 +126,7 @@ function loadGameOnline() {
                     })
                 }
                 break
+            case "d":
             case "ArrowRight":
                 if (game.players[whoAmI].idle) {
                     socket.emit("askformove", {
@@ -146,14 +135,23 @@ function loadGameOnline() {
                     })
                 }
                 break
+            case "Enter":
+                if (game.players[whoAmI].canDropBomb() && game.players[whoAmI].bombs > 0) {
+                    socket.emit("askforbomb", {
+                        type: 1,
+                        x: game.players[whoAmI].x / 64,
+                        y: game.players[whoAmI].y / 64
+                    }, function () {
+                        game.players[whoAmI].bombs--
+                    })
+                }
+                break
             case " ":
                 if (game.players[whoAmI].canDropBomb()) {
                     socket.emit("askforbomb", {
-                        type: game.players[whoAmI].bombType,
+                        type: 0,
                         x: game.players[whoAmI].x / 64,
                         y: game.players[whoAmI].y / 64
-                    }, function(){
-                        game.players[whoAmI].setBombType(0)
                     })
                 }
                 break
@@ -194,8 +192,13 @@ function loadGameLocally(){
                     break
                 case "Enter":
                     if(game.players[1].canDropBomb()){
-                        game.items.push(new Bomb(game.players[1].bombType, game.players[1].x, game.players[1].y))
-                        game.players[1].setBombType(0)
+                        game.items.push(new Bomb(0, game.players[1].x, game.players[1].y))
+                    }
+                    break
+                case "m":
+                    if (game.players[1].canDropBomb() && game.players[1].bombs > 0){
+                        game.items.push(new Bomb(1, game.players[1].x, game.players[1].y))
+                        game.players[1].bombs--
                     }
                     break
                 case "z":
@@ -218,10 +221,15 @@ function loadGameLocally(){
                         game.players[0].moveX()
                     }
                     break
-                case "r":
+                case "e": // This drops a normal bomb
                     if (game.players[0].canDropBomb()) {
-                        game.items.push(new Bomb(game.players[0].bombType, game.players[0].x, game.players[0].y))
-                        game.players[0].setBombType(0)
+                        game.items.push(new Bomb(0, game.players[0].x, game.players[0].y))
+                    }
+                    break
+                case "r": // This drops a megabomb
+                    if (game.players[0].canDropBomb() && game.players[0].bombs > 0) {
+                        game.items.push(new Bomb(1, game.players[0].x, game.players[0].y))
+                        game.players[0].bombs--
                     }
                     break
             }
