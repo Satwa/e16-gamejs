@@ -1,4 +1,4 @@
-# Boomkill by E16 Inc.
+# Boomkill
 
 #### H1 SI3 at [HETIC](https://www.hetic.net/)
 
