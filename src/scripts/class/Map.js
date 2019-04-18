@@ -31,6 +31,8 @@ class Map{
     }
 
     isBreakableAt(mx, my){ // stands for matrixX and matrixY
+        if (mx > this.data.map[0].length - 1 || my > this.data.map.length - 1 || mx < 0 || my < 0) return false
+        if (!this.data.map[my]) return false
         return CAN_EXPLOSE_TILES.includes(this.data.map[my][mx])
     }
 
