@@ -161,8 +161,8 @@ function loadGameOnline() {
 }
 
 // in a singleplayer context
-function loadGameLocally(){
-    game = new Game()
+function loadGameLocally(maptype = 0){
+    game = new Game(maptype)
     game.map.loadMap().then(() => {
         game.addPlayer("Grégoire", 2, CELL_SIZE, CELL_SIZE)
         game.addPlayer("Léa", 7, CELL_SIZE * (game.map.data.map[0].length - 2), CELL_SIZE * (game.map.data.map.length - 2))
