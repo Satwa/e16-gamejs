@@ -29,6 +29,7 @@ for(let link of gameMenuLinks){
             // TODO: Ask for player names, skin and map preference
             document.querySelector('canvas#canvas').style.zIndex = 10
             loadGameLocally()
+            document.querySelector('.keycontrol--solo').style.display = "flex"
         }else{
             gameMenu.classList.toggle("blur")
             document.querySelector(".menu--multi").style.display = "flex"
@@ -55,6 +56,7 @@ for(let link of gameMenuLinks){
                         room = generatedCode
                         prepareMultiplayer(room)
                     }
+                    document.querySelector('.keycontrol--multi').style.display = "flex"
                 })
             }
         }
@@ -88,6 +90,8 @@ function websiteShowEnd(wonIndex, multiplayer) {
             document.removeEventListener("keydown", _handleOnlineKeyboard, true)
             game = null
             gameMenu.classList.toggle("blur")
+            document.querySelector('.keycontrol--multi').style.display = "none"
+            document.querySelector('.keycontrol--solo').style.display = "none"
         }else{
             document.removeEventListener("keydown", _handleLocalKeyboard, true)
             game = null

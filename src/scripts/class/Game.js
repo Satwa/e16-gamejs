@@ -108,10 +108,8 @@ class Game{
                                 
                                 if (player.health > 0) {
                                     isPlayerDeadAt.push(0)
-                                    console.log("life greater than 0")
                                 } else {
                                     isPlayerDeadAt.push(1)
-                                    console.log("life lower than 1")
                                     deads++
                                 }
                                 if (deads === this.players.length - 1) {

@@ -113,3 +113,34 @@
     width: 64px;
     height: 64px;
 }
+
+.keycontrol{
+    background: $day-card-background;    
+    color: #FFF;
+    margin-top: 20px;
+
+    &--solo{
+        display: none;
+        flex-direction: row;
+        justify-content: space-evenly;
+        font-size: 1.5rem;
+    }
+    
+    &--multi{
+        display: none;
+        flex-direction: column;
+        justify-content: space-evenly;
+        font-size: 1.5rem;
+    }
+}
+
+.key{
+    color: #000;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.1em 0.5em;
+    margin: 0 0.2em;
+    box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+    background-color: #f7f7f7;
+}
