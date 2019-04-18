@@ -19,9 +19,39 @@
     <link rel="stylesheet" href="dist/styles/app.css">
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    
-
+    <header id="header">
+      <nav class="navigation">
+        <ul class="navigation__menu flexContent">
+          <li class="navigation__list"><a class="navigation__link" href="#"><img class="navigation__icon" src="dist/res/images/sun.svg" alt=""></a></li>
+          <li class="navigation__list"><a class="navigation__link" href="#"><img class="navigation__icon" src="dist/res/images/moon.svg" alt=""></a></li>
+        </ul>
+      </nav>
+      <div class="">
+        <div class="flexContent">
+          <div class="leftMenu flexContentVertical">
+            <h3>Joueur 1</h3>
+            <h3>Vie</h3>
+            <div class="flexContent">
+              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+            </div>
+            <h3>Stuff</h3>
+          </div>
+          <canvas id="canvas" class="canvas"></canvas>
+          <div class="rightMenu flexContentVertical">
+            <h3>Joueur 2</h3>
+            <h3>Vie</h3>
+            <div class="flexContent">
+              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+            </div>
+            <h3>Stuff</h3>
+          </div>
+        </div>
+      </div>
+    </header>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script src="dist/scripts/app.js"></script>
   </body>

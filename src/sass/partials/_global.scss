@@ -24,7 +24,7 @@ a{
   text-decoration: none;
 }
 
-/*  Useful classes  */
+/*  Useful  */
 .container{
   width: 960px;
   margin: 0 auto;
@@ -34,11 +34,12 @@ a{
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
 }
 
 .flexContentVertical{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }

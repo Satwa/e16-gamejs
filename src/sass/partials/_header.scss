@@ -3,6 +3,7 @@
   height: 100vh;
   background-image: url('../res/images/day_mode.gif');
   background-size: 42%;
+  z-index: 0;
   .navigation{
     .navigation__menu{
         margin: 0;
@@ -24,6 +25,9 @@
 
           }
         }
+      }
+      .canvas{
+
       }
     }
   }

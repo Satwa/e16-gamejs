@@ -1,5 +1,5 @@
 const CELL_SIZE = 64
-const SCALE = .7
+const SCALE = 1/2
 const TICK = 100
 const AUTHORIZED_TILES = [0, 5, 6]
 const CAN_EXPLOSE_TILES = [0, 1, 5, 6]
