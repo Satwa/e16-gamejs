@@ -36,6 +36,8 @@ class Character extends Entity{
         }
         const nextCellX = (this.x + CELL_SIZE * factor) / CELL_SIZE,
               nextCellY = this.y / CELL_SIZE
+        
+        if(!this.map[nextCellY]) return
         if(AUTHORIZED_TILES.includes(this.map[nextCellY][nextCellX])){ // If next case is an authorized block, we do the move
             if (this.map[nextCellY][nextCellX] === 5) {
                 this.map[nextCellY][nextCellX] = 0
@@ -71,6 +73,8 @@ class Character extends Entity{
 
         const nextCellX = this.x / CELL_SIZE,
               nextCellY = (this.y + CELL_SIZE * factor) / CELL_SIZE
+        
+        if (!this.map[nextCellY]) return
         if (AUTHORIZED_TILES.includes(this.map[nextCellY][nextCellX])) { // If next case is an authorized block, we do the move
             if (this.map[nextCellY][nextCellX] === 5) {
                 this.map[nextCellY][nextCellX] = 0
