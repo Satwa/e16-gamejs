@@ -30,7 +30,7 @@ function forceRoomStart(){
 
 
 function prepareMultiplayer(room){
-    socket = io('https://e16-gameserver.herokuapp.com') // 'http://localhost:5042'
+    socket = io('http://localhost:5042') // 'https://e16-gameserver.herokuapp.com'
 
     socket.emit("joinroom", { room: room })
 
@@ -81,7 +81,7 @@ function loadGameOnline() {
     })
 
     socket.on("mapedit", function(data){
-        game.map.data = { map: data.map.slice() }
+        game.map.data.map = data.map.slice()
         for(let player of game.players){
             player.map = data.map.slice()
         }

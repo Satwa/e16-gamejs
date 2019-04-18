@@ -1,6 +1,6 @@
 const http = require('http')
 
-const io = require("socket.io")(process.env.PORT) // process.env.PORT || 5042
+const io = require("socket.io")(process.env.PORT ? process.env.PORT : 5042) 
 const fs = require('fs')
 
 const TICK = 100
@@ -23,8 +23,8 @@ let players = [],
 // Preload all maps
 const mapsFiles = fs.readdirSync('./server/maps/')
 const MAP_LENGTH = mapsFiles.length
-for(mapName of mapsFiles){
-    const mapFile = String(fs.readFileSync('./server/maps/' + mapName))
+for(let i = 0; i < MAP_LENGTH; i++){
+    const mapFile = String(fs.readFileSync('./server/maps/' + i + ".json"))
 
     maps.push(JSON.parse(mapFile))
 }
@@ -70,7 +70,7 @@ io.sockets.on("connection", function(socket) {
                 rooms[data.room].spectators.push(currentUser.id)
             }
         }else{
-            let randomMapType = Math.floor(Math.random() * MAP_LENGTH)
+            const randomMapType = Math.floor(Math.random() * MAP_LENGTH)
             rooms[data.room] = {
                 started: false,
                 players: [],
