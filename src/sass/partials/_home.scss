@@ -77,9 +77,9 @@
 	font-family: $font-primary;
 	font-size: 2.6rem;
 	text-transform: uppercase;
-	background: $color-primary-light;
+	background: $color-primary;
 	padding: 10px 20px;
 	&:hover{
-		background: $color-primary;
+		color: $color-primary-light;
 	}
 }

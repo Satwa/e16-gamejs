@@ -1,0 +1,46 @@
+/*  Canvas  */
+.canvas{
+    width: 768px;
+    height: 480px;
+    border: thin solid rgba(0, 0, 0, 1);
+    position: relative;
+    
+    #canvas{
+        position: absolute;
+        z-index: 1;
+    }
+    .menu{
+        position: absolute;
+        background: $day-card-background;
+        font-family: $font-title;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top:0;left:0;right:0;bottom:0;
+        a{
+            color: #FFF;
+            margin: 10px 0;
+            &:hover{
+                color: $color-primary-light;
+            }
+        }
+    }
+}
+
+.leftMenu{
+    width: 360px;
+    height: 480px;
+    border: thin solid rgba(0, 0, 0, 1);
+}
+
+.rightMenu{
+    width: 360px;
+    height: 480px;
+    border: thin solid rgba(0, 0, 0, 1);
+}
+
+.canvas__hero{
+    width: 64px;
+    height: 64px;
+}

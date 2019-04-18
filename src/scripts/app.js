@@ -15,13 +15,6 @@ function contains(arr, element) {
     return false
 }
 
-const bgButtons = document.querySelectorAll(".navigation__link")
-for(let button of bgButtons){
-    button.addEventListener("click", function(e){
-        e.preventDefault()
-        document.querySelector("#header").style.backgroundImage = "url(dist/res/images/" + this.getAttribute('data-mode') + "_mode.gif)"
-    })
-}
 
 
 
@@ -46,7 +39,7 @@ function prepareMultiplayer(room){
 
     socket.on("loadroom", function(room) {
         console.log(room)
-        game = new Game(room.maptype)
+        game = new Game(room.maptype, true)
         game.map.loadMap().then(function() {
             for(let [index, player] of room.players.entries()){
                 game.addPlayer(player.name, index, player.x * CELL_SIZE, player.y * CELL_SIZE)
@@ -58,7 +51,7 @@ function prepareMultiplayer(room){
             game.map.data.map = room.map.slice()
             updater = setInterval(() => {
                 ELAPSED += TICK
-                game.update(true)
+                game.update()
             }, TICK)
         })
     })
