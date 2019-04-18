@@ -1,55 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-      <meta charset="utf-8">
-      <title>Boomkill</title>
-      <meta name="viewport" content="width= device-width, initial-scale= 1.0">
-      <meta name="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner.">
-      <meta name="keywords" content="Bombkill, bomb, kill, game">
-      <meta name="author" content="Équipe 16 - Joshua Tabakhoff, Naomi Talla, Arnaud Soyer, Céline Sung, Valentin Séjourné">
-      <meta name="copyright" content="© - E16 Inc. - 2019">
-      <meta property="og:title" content="Bombkill"/>
-      <meta property="og:type" content="website"/>
-      <meta property="og:locale" content="fr_FR">
-      <meta property="og:url" content="http://put_game_url.smth"/>
-      <meta property="og:image" content="url_to/images/img_name.jpg"/>
-      <link rel="icon" href="path_of_the_png_to_the_tab"/>
-      <link rel="stylesheet" href="styles/...">
+    <meta charset="utf-8">
+    <title>Boomkill - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner.">
+    <meta name="keywords" content="Bombkill, bomb, kill, game">
+    <meta name="author" content="Équipe 16 - Joshua Tabakhoff, Naomi Talla, Arnaud Soyer, Céline Sung, Valentin Séjourné">
+    <meta name="copyright" content="© - E16 Inc. - 2019">
+    <meta property="og:title" content="Bombkill"/>
+    <meta property="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:url" content="https://boomkill.joshua.ovh/"/>
+    <meta property="og:image" content="src/res/images/boomkill_logo.png"/>
+    <link rel="icon" href="src/res/images/boomkill_rel_icon.png"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="dist/styles/app.css">
   </head>
   <body>
-      <header id="header">
-          <nav class="container">
-              <ul>
-                  <li><a href="#" title="item 1">Accueil</a></li>
-                  <li><a href="#" title="item 2">Jeu</a></li>
-                  <li><a href="#" title="item 3">FAQ / Contact</a></li>
-                  <li><a href="/game.html" title="item 4">Jouer</a></li>
-              </ul>
-          </nav>
-      </header>
-      <main>
-          <section>
-              <div class="container">
-                  <h2>Synopsis</h2>
-
-              </div>
-          </section>
-          <section>
-              <div class="container">
-                  <h2></h2>
-
-              </div>
-          </section>
-          <section>
-                <div class="container">
-
-                </div>
-            </section>
-      </main>
-      <footer>
-          <div class="container"></div>
-      </footer>
-
-    <script src="scripts/main.js"></script>
+    <header id="header">
+      <nav class="navigation">
+        <ul class="navigation__menu flexContent">
+          <li class="navigation__list"><a class="navigation__link" href="#"><img class="navigation__icon" src="src/res/images/sun.svg" alt=""></a></li>
+          <li class="navigation__list"><a class="navigation__link" href="#"><img class="navigation__icon" src="src/res/images/moon.svg" alt=""></a></li>
+        </ul>
+      </nav>
+      <div class="header__content container flexContentVertical">
+        <div class="header__logo">
+          <img class="header__logo-item" src="src/res/images/boomkill_logo.png" alt="boomkill_logo">
+        </div>
+        <div class="header__picture">
+          <a href="#"><img class="header__picture-item" src="src/res/images/8-bit-bomb.png" alt="bomb"></a>
+        </div>
+        <div class="header__caption">
+          <p>Appuyez sur la bombe <br> pour jouer</p>
+        </div>
+      </div>
+    </header>
+    <script src="dist/scripts/app.js"></script>
   </body>
 </html>

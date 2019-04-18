@@ -1,5 +1,51 @@
 #header{
-    &__nav{
-        // ...
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../res/images/day_mode.gif');
+  .navigation{
+    .navigation__menu{
+        justify-content: flex-end;
+      .navigation__list{
+        border: thin solid rgba(0, 0, 0, 0);
+        width: 47px;
+        height: 47px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.3);
+        list-style: none;
+        margin: 10px;
+        padding: 10px;
+        .navigation__link{
+          text-decoration: none;
+          .navigation__icon{
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
     }
+  }
+  .header__content{
+    text-align: center;
+    .header__logo{
+      width: 750px;
+      height: 235px;
+      &-item{
+        width: 100%;
+      }
+    }
+    .header__picture{
+      width: 128px;
+      height: 128px;
+      margin-left: 30px;
+      &-item{
+        width: 100%;
+      }
+    }
+    .header__caption{
+      padding-top: 20px;
+      font-size: 2.6rem;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 1)
+    }
+  }
 }
