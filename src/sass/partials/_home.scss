@@ -1,63 +1,72 @@
 #main{
-  .media{
-    margin-top: 80px;
-    &__section-title{
-      display: flex;
-      justify-content: center;
-      font-size: 2.6rem;
-      font-weight: bold;
-      color: $text-color-secondary-dark;
-      font-family : $font-title;
-    }
-    &__section{
+	.media{
+		margin-top: 80px;
+		&__section-title{
+			display: flex;
+			justify-content: center;
+			font-size: 2.6rem;
+			font-weight: bold;
+			color: $text-color-secondary-dark;
+			font-family : $font-title;
+		}
+		&__section{
+			
+			margin: 20px auto;
+			border-radius: 30px;
+			padding: 20px;
+			&--title{
+				font-family: $font-title;
+				font-size: 2.4rem;
+				font-weight: bold;
+				color: $day-card-background;
+				&:before{
+					content: url(../res/images/arrow.svg);
+					margin-right: 10px;
+				}
+			}
+			.media__arrow{
+				display: flex;
+				flex-direction: row;
+				&-item{
+					width: 65px;
+					height: auto;
+				}
+			}
+			&--text{
+				color: $text-color-dark;
+				line-height: 1.5;
+				font-family: $font-primary;
+				font-size: 2rem;
+				padding: 0 100px;
+			}
+			.media__poster{
+				display: flex;
+				justify-content: center;
+				&--item{
+					height: 80vh;
+				}
+			}
+		}
+		.media__style{
+			width: 640px;
+			margin: 40px auto;
+			border-top: thin solid #999;
+			border-bottom: thin solid #999;
+		}
+		.media__title--main{
+			text-align: center;
+			font-family: $font-title;
+			font-weight: bold;
+			font-size: 2.6rem;
+			color: $day-card-background;
+		}
+	}
+}
 
-      margin: 20px auto;
-      border-radius: 30px;
-      padding: 20px;
-      &--title{
-        font-family: $font-title;
-        font-size: 2.6rem;
-        font-weight: bold;
-        color: $day-card-background;
-        &:before{
-          content: url(../res/images/arrow.svg);
-          margin-right: 10px;
-        }
-      }
-      .media__arrow{
-        display: flex;
-        flex-direction: row;
-        &-item{
-          width: 65px;
-          height: auto;
-        }
-      }
-      &--text{
-        color: $text-color-dark;
-        line-height: 2.6rem;
-        font-family: $font-primary;
-        font-size: 2.2rem;
-        padding: 0 100px;
-      }
-      .media__poster{
-        display: flex;
-        justify-content: center;
-        &-item{
-          width: 100%;
 
-        }
-      }
-    }
-    .media__style{
-      width: 640px;
-      margin: 40px auto;
-      border-top: thin solid #999;
-      border-bottom: thin solid #999;
-    }
-    .media__title--main{
-      text-align: center;
-      font-family: $font-title;
-      font-weight: bold;
-    }
-  }
+.with_arrow{
+	&:before{
+		content: url(../res/images/arrow.svg);
+		margin-right: 10px;
+	}
 }

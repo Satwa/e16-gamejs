@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Boomkill - Game</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner.">
-    <meta name="keywords" content="Boomkill, bomb, kill, game">
-    <meta name="author" content="Équipe 16 - Joshua Tabakhoff, Naomi Talla, Arnaud Soyer, Céline Sung, Valentin Séjourné">
-    <meta name="copyright" content="© - E16 Inc. - 2019">
-    <meta property="og:title" content="Bombkill"/>
-    <meta property="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner."/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:url" content="https://boomkill.joshua.ovh/"/>
-    <meta property="og:image" content="dist/res/images/boomkill_logo.png"/>
-    <link rel="icon" href="dist/res/images/boomkill_rel_icon.png"/>
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="dist/styles/app.css">
-  </head>
-  <body>
-    <header id="header">
-      <nav class="navigation">
-        <ul class="navigation__menu flexContent">
-          <li class="navigation__list"><a class="navigation__link" href="#" data-mode="day"><img class="navigation__icon" src="dist/res/images/sun.svg" alt=""></a></li>
-          <li class="navigation__list"><a class="navigation__link" href="#" data-mode="night"><img class="navigation__icon" src="dist/res/images/moon.svg" alt=""></a></li>
-        </ul>
-      </nav>
-      <div class="">
-        <div class="flexContent">
-          <div class="leftMenu flexContentVertical">
-            <h3>Joueur 1</h3>
-            <h3>Vie</h3>
-            <div class="flexContent">
-              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
-              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
-              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
-            </div>
-            <h3>Stuff</h3>
-          </div>
-          <canvas id="canvas" class="canvas"></canvas>
-          <div class="rightMenu flexContentVertical">
-            <h3>Joueur 2</h3>
-            <h3>Vie</h3>
-            <div class="flexContent">
-              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
-              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
-              <img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
-            </div>
-            <h3>Stuff</h3>
-          </div>
-        </div>
-      </div>
-    </header>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-    <script src="dist/scripts/app.js"></script>
-  </body>
+<head>
+	<meta charset="utf-8">
+	<title>Boomkill - Game</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner.">
+	<meta name="keywords" content="Boomkill, bomb, kill, game">
+	<meta name="author" content="Équipe 16 - Joshua Tabakhoff, Naomi Talla, Arnaud Soyer, Céline Sung, Valentin Séjourné">
+	<meta name="copyright" content="© - E16 Inc. - 2019">
+	<meta property="og:title" content="Bombkill"/>
+	<meta property="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner."/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:locale" content="fr_FR">
+	<meta property="og:url" content="https://boomkill.joshua.ovh/"/>
+	<meta property="og:image" content="dist/res/images/boomkill_logo.png"/>
+	<link rel="icon" href="dist/res/images/boomkill_rel_icon.png"/>
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="dist/styles/app.css">
+</head>
+<body>
+	<header id="header">
+		<nav class="navigation">
+			<ul class="navigation__menu flexContent">
+				<li class="navigation__list"><a class="navigation__link" href="#" data-mode="day"><img class="navigation__icon" src="dist/res/images/sun.svg" alt=""></a></li>
+				<li class="navigation__list"><a class="navigation__link" href="#" data-mode="night"><img class="navigation__icon" src="dist/res/images/moon.svg" alt=""></a></li>
+			</ul>
+		</nav>
+		<div class="">
+			<div class="flexContent">
+				<div class="leftMenu flexContentVertical">
+					<h3>Joueur 1</h3>
+					<h3>Vie</h3>
+					<div class="flexContent">
+						<img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+						<img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+						<img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+					</div>
+					<h3>Stuff</h3>
+				</div>
+				<canvas id="canvas" class="canvas"></canvas>
+				<div class="rightMenu flexContentVertical">
+					<h3>Joueur 2</h3>
+					<h3>Vie</h3>
+					<div class="flexContent">
+						<img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+						<img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+						<img class="canvas__hero" src="dist/res/images/heart.png" alt="player life">
+					</div>
+					<h3>Stuff</h3>
+				</div>
+			</div>
+		</div>
+	</header>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+	<script src="dist/scripts/app.js"></script>
+</body>
 </html>
