@@ -42,7 +42,10 @@ for(let link of gameMenuLinks){
             for(let joinLink of joinMultiplayerLinks){
                 joinLink.addEventListener('click', function(e){
                     e.preventDefault()
-
+                    if(this.innerHTML !== "Rejoindre") return
+                    
+                    this.innerHTML = "Chargement..."
+                    
                     let room
                     if(this.getAttribute('data-value') == "join"){
                         room = document.querySelector('#roomid').value
@@ -51,14 +54,18 @@ for(let link of gameMenuLinks){
                         room = generatedCode
                         prepareMultiplayer(room)
                     }
-                    document.querySelector('canvas#canvas').style.zIndex = 10
-                    document.querySelector(".menu--multi").style.display = "none"
-                    gameMenu.classList.toggle("blur")
-                    document.querySelector("h1").innerHTML = "Partie en cours sur la room " + room 
                 })
             }
         }
     })
+}
+
+function websiteResetMenu(room) {
+    document.querySelector('canvas#canvas').style.zIndex = 10
+    document.querySelector(".menu--multi").style.display = "none"
+    gameMenu.classList.toggle("blur")
+    document.querySelector("h1").innerHTML = "Partie en cours sur la room " + room
+    this.innerHTML = "Rejoindre"
 }
 
 

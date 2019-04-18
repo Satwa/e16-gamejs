@@ -29,13 +29,15 @@ function forceRoomStart(){
 }
 
 
-function prepareMultiplayer(room){
+function prepareMultiplayer(roomParam){
     socket = io('https://e16-gameserver.herokuapp.com') // 'http://localhost:5042'
 
-    socket.emit("joinroom", { room: room })
+    socket.emit("joinroom", { room: roomParam })
 
     socket.on("loadroom", function(room) {
-        console.log(room)
+        
+        websiteResetMenu(roomParam)
+
         game = new Game(room.maptype, true)
         game.map.loadMap().then(function() {
             for(let [index, player] of room.players.entries()){
