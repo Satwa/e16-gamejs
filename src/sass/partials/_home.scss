@@ -70,3 +70,16 @@
 		margin-right: 10px;
 	}
 }
+
+.playgame{
+	text-align: center;
+	color: #FFF;
+	font-family: $font-primary;
+	font-size: 2.6rem;
+	text-transform: uppercase;
+	background: $color-primary-light;
+	padding: 10px 20px;
+	&:hover{
+		background: $color-primary;
+	}
+}
