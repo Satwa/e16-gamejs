@@ -15,9 +15,6 @@ function contains(arr, element) {
     return false
 }
 
-
-
-
 function generateRoomId(){
     const hexa = "ABCDEF0123456789"
     let generated = ""

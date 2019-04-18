@@ -22,12 +22,41 @@ for (let button of bgButtons) {
 const gameMenu = document.querySelector(".menu")
 const gameMenuLinks = document.querySelectorAll(".menu a.menu--play")
 for(let link of gameMenuLinks){
-    link.addEventListener('click', function(){
+    link.addEventListener('click', function(e){
+        e.preventDefault()
+
         if(this.getAttribute('data-value') == "solo"){
             // TODO: Ask for player names, skin and map preference
+            document.querySelector('canvas#canvas').style.zIndex = 10
             loadGameLocally()
         }else{
+            gameMenu.classList.toggle("blur")
+            document.querySelector(".menu--multi").style.display = "flex"
+            
+            const joinMultiplayerLinks = document.querySelectorAll(".menu--multi--join")
+            
             // TODO: Multiplayer modal
+            let generatedCode = generateRoomId()
+            document.querySelector("#generatedroomid").innerHTML = "Code : " + generatedCode
+
+            for(let joinLink of joinMultiplayerLinks){
+                joinLink.addEventListener('click', function(e){
+                    e.preventDefault()
+
+                    let room
+                    if(this.getAttribute('data-value') == "join"){
+                        room = document.querySelector('#roomid').value
+                        prepareMultiplayer(room)
+                    }else{
+                        room = generatedCode
+                        prepareMultiplayer(room)
+                    }
+                    document.querySelector('canvas#canvas').style.zIndex = 10
+                    document.querySelector(".menu--multi").style.display = "none"
+                    gameMenu.classList.toggle("blur")
+                    document.querySelector("h1").innerHTML = "Partie en cours sur la room " + room 
+                })
+            }
         }
     })
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 	<meta charset="utf-8">
 	<title>Boomkill - Game</title>
@@ -15,7 +15,6 @@
 	<meta property="og:url" content="https://boomkill.joshua.ovh/"/>
 	<meta property="og:image" content="dist/res/images/boomkill_logo.png"/>
 	<link rel="icon" href="dist/res/images/boomkill_rel_icon.png"/>
-	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="dist/styles/app.css">
 </head>
 <body>
@@ -27,12 +26,28 @@
 			</ul>
 		</nav>
 		<div class="container">
+			<h1>Boomkill</h1>
 			<div class="flexContent">
 				<div class="canvas">
 					<canvas id="canvas"></canvas>
 					<div class="menu">
 						<a href="#" class="menu--play" data-value="solo">Solo</a>
 						<a href="#" class="menu--play" data-value="online">Multijoueur</a>
+					</div>
+					<div class="menu--multi">
+						<div>
+							<h3>Rejoindre une salle</h3>
+							<input type="text" id="roomid">
+							<span class="block"></span>
+							<a href="#" class="menu--multi--join" data-value="join">Rejoindre</a>							
+						</div>
+
+						<div>
+							<h3>Créer une salle</h3>
+							<h4 id="generatedroomid">Code</h4>
+
+							<a href="#" class="menu--multi--join" data-value="new">Rejoindre</a>
+						</div>
 					</div>
 				</div>
 				<!-- <div class="leftMenu flexContentVertical">
