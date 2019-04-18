@@ -8,10 +8,10 @@ This week, we had to make a game in Vanilla JS. Our choices led us to a Bomberma
 
 To do that, from 15/04/19 to 19/04/19, after discovering the topic, we assigned tasks to everybody in order to be more efficient. Of course, most of the things are in English except while browsing the website.
 
-Our crew at E16:
+#### Our crew at E16
+- Valentin Sejourne *at Development & Design*
 - Arnaud Soyer *at Marketing & Communication*
 - Céline Sung *at Marketing, Communication & Design*
-- Valentin Sejourne *at Development & Design*
 - Joshua Tabakhoff *at Development*
 - Naomi Talla *at Design & Game Design*
 
@@ -25,10 +25,8 @@ The whole project needs to be compiled using Gulp. To do that:
 
 
 If you want to play in multiplayer: 
-- Go to *server/* 
-- Run ```npm install```
-- Run ```node server.js```
-- Change the socket url in client in app.js around *line 33*
+- Run ```npm start``` from *./*
+- Change the socket url in client in *src/scripts/app.js* around *line 33*
 
 ## Link to website
 
