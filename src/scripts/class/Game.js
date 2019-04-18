@@ -1,6 +1,6 @@
 class Game{
 
-    constructor(maptype = 0, multiplayer = false){
+    constructor(maptype = Math.floor(Math.random() * 12), multiplayer = false){
         this.map = new Map(maptype)
         this.players = []
         this.items = []
@@ -97,15 +97,27 @@ class Game{
                                 }
                                 this.items.push(new Particle(localX, localY))
                             }
-    
-                            for (let player of this.players) {
+                            
+                            let isPlayerDeadAt = [], deads = 0
+                            for (let [index, player] of this.players.entries()) {
                                 let playerPosition = [player.x / CELL_SIZE, player.y / CELL_SIZE]
                                 if (positions.find(comparePosition(playerPosition)) !== undefined && !tookDamage) {
                                     tookDamage = true
                                     item.type === 0 ? player.setHealth(-1) : player.setHealth(-3) // If bomb only life-1 / if megabomb instant-kill
-                                    if (player.health === 0) {
-                                        alert("Player " + player.name + " died") // TODO: handle death correctly (fire event?)
-                                    }
+                                }
+                                
+                                if (player.health > 0) {
+                                    isPlayerDeadAt.push(0)
+                                    console.log("life greater than 0")
+                                } else {
+                                    isPlayerDeadAt.push(1)
+                                    console.log("life lower than 1")
+                                    deads++
+                                }
+                                if (deads === this.players.length - 1) {
+                                    console.log(deads)
+                                    console.log(isPlayerDeadAt)
+                                    websiteShowEnd(isPlayerDeadAt.indexOf(1) + 1, this.multiplayer)
                                 }
                             }
                         }

@@ -50,6 +50,7 @@ for(let link of gameMenuLinks){
                     if(this.getAttribute('data-value') == "join"){
                         room = document.querySelector('#roomid').value
                         prepareMultiplayer(room)
+                        document.querySelector('#roomid').value = ""
                     }else{
                         room = generatedCode
                         prepareMultiplayer(room)
@@ -63,9 +64,36 @@ for(let link of gameMenuLinks){
 function websiteResetMenu(room) {
     document.querySelector('canvas#canvas').style.zIndex = 10
     document.querySelector(".menu--multi").style.display = "none"
-    gameMenu.classList.toggle("blur")
     document.querySelector("h1").innerHTML = "Partie en cours sur la room " + room
-    this.innerHTML = "Rejoindre"
+    for (let link of gameMenuLinks) {
+        link.innerHTML = "Rejoindre"
+    }
+}
+
+function websiteShowEnd(wonIndex, multiplayer) {
+    document.querySelector('canvas#canvas').style.zIndex = 1
+    document.querySelector(".menu--end").style.display = "flex"
+    document.querySelector("h1").innerHTML = "Bombkill"
+
+    clearTimeout(updater)
+
+    document.querySelector("#playerindex").innerHTML = wonIndex
+    document.querySelector("#duration").innerHTML = Math.floor(ELAPSED / 1000 / 60) + " min " + Math.floor(ELAPSED / 1000 % 60) + "s"
+
+    document.querySelector('.menu--end--restart').addEventListener('click', function(e){
+        e.preventDefault()
+
+        document.querySelector(".menu--end").style.display = "none"
+        if(multiplayer){
+            document.removeEventListener("keydown", _handleOnlineKeyboard, true)
+            game = null
+            gameMenu.classList.toggle("blur")
+        }else{
+            document.removeEventListener("keydown", _handleLocalKeyboard, true)
+            game = null
+            loadGameLocally()
+        }
+    })
 }
 
 

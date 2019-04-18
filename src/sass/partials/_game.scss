@@ -73,6 +73,28 @@
             }
         }
     }
+
+    .menu--end{
+        z-index: 2;
+
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+
+        background: $day-card-background;
+        font-family: $font-title;
+        
+        color: #FFF;
+
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        display: none;
+
+        &--restart{
+            color: $color-primary-light;
+        }
+    }
 }
 
 .leftMenu{
