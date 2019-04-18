@@ -15,6 +15,16 @@ function contains(arr, element) {
     return false
 }
 
+const bgButtons = document.querySelectorAll(".navigation__link")
+for(let button of bgButtons){
+    button.addEventListener("click", function(e){
+        e.preventDefault()
+        document.querySelector("#header").style.backgroundImage = "url(dist/res/images/" + this.getAttribute('data-mode') + "_mode.gif)"
+    })
+}
+
+
+
 function generateRoomId(){
     const hexa = "ABCDEF0123456789"
     let generated = ""

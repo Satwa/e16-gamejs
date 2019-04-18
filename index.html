@@ -1,159 +1,141 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <title>Boomkill - Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner.">
-    <meta name="keywords" content="Bombkill, bomb, kill, game">
-    <meta name="author" content="Équipe 16 - Joshua Tabakhoff, Naomi Talla, Arnaud Soyer, Céline Sung, Valentin Séjourné">
-    <meta name="copyright" content="© - E16 Inc. - 2019">
-    <meta property="og:title" content="Bombkill"/>
-    <meta property="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner."/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:url" content="https://boomkill.joshua.ovh/"/>
-    <meta property="og:image" content="dist/res/images/boomkill_logo.png"/>
-    <link rel="icon" href="dist/res/images/boomkill_rel_icon.png"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="dist/styles/app.css">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>Boomkill - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner.">
+  <meta name="keywords" content="Bombkill, bomb, kill, game">
+  <meta name="author" content="Équipe 16 - Joshua Tabakhoff, Naomi Talla, Arnaud Soyer, Céline Sung, Valentin Séjourné">
+  <meta name="copyright" content="© - E16 Inc. - 2019">
+  <meta property="og:title" content="Bombkill"/>
+  <meta property="description" content="Bombkill est un jeu vidéo où le joueur incarne un poseur de bombes, le but étant de faire exploser les adversaires/ennemis pour gagner."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:url" content="https://boomkill.joshua.ovh/"/>
+  <meta property="og:image" content="dist/res/images/boomkill_logo.png"/>
+  <link rel="icon" href="dist/res/images/boomkill_rel_icon.png"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="dist/styles/app.css">
+</head>
 
-  <body>
-    <header id="header">
-      <nav class="navigation">
-        <ul class="navigation__menu flexContent">
-          <li class="navigation__list"><a class="navigation__link" href="#"><img class="navigation__icon" src="dist/res/images/sun.svg" alt=""></a></li>
-          <li class="navigation__list"><a class="navigation__link" href="#"><img class="navigation__icon" src="dist/res/images/moon.svg" alt=""></a></li>
-        </ul>
-      </nav>
-      <div class="header__content container flexContentVertical">
-        <div class="header__logo">
-          <img class="header__logo-item" src="dist/res/images/boomkill_logo.png" alt="boomkill_logo">
-        </div>
-        <div class="header__picture">
-          <a href="./game.html"><img class="header__picture-item" src="dist/res/images/8-bit-bomb.png" alt="bomb"></a>
-        </div>
-        <div class="header__caption">
-          <p>Appuyez sur la bombe <br> pour jouer</p>
-        </div>
+<body>
+  <header id="header">
+    <nav class="navigation">
+      <ul class="navigation__menu flexContent">
+        <li class="navigation__list"><a class="navigation__link" href="#" data-mode="day"><img class="navigation__icon" src="dist/res/images/sun.svg" alt=""></a></li>
+        <li class="navigation__list"><a class="navigation__link" href="#" data-mode="night"><img class="navigation__icon" src="dist/res/images/moon.svg" alt=""></a></li>
+      </ul>
+    </nav>
+    <div class="header__content container flexContentVertical">
+      <div class="header__logo">
+        <img class="header__logo-item" src="dist/res/images/boomkill_logo.png" alt="boomkill_logo">
       </div>
-    </header>
-
-    <main id="main">
-      <div class="media container flexContentVertical">
-        <section class="media__section-title">
-          <h2 class="media__title__title">Synopsis</h2>
-        </section>
-
-        <section class="media__section">
-          <div class="media__arrow">
-            <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
-            <h2 class="media__title">Le concept</h2>
-          </div>
-          <div class="flexContent">
-            <div class="media__text">
-              <p>Boomkill est un jeu de plateforme où le but est d'être le dernier survivant. Pour ce faire: stratégie, cordination et maîtrise seront les qualités requises pour faire de toi un vainqueur !</p>
-            </div>
-          </div>
-        </section>
-
-
-        <section class="media__section">
-          <div class="media__arrow">
-            <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
-            <h2 class="media__title">Comment Jouer?</h2>
-          </div>
-          <div class="flexContent">
-            <div class="media__text">
-              <p>Tu incarnes un personnage placé à l'extrémité du carte. Ton but est d'éliminer tous les adversaires qui se hisseront contre toi. <br> À ta disposition, des bombes que tu poseras afin d'exploser tes adversaires et les obstacles qui t'empèches d'avancer ! <br> Le personnage que tu joues dispose de 3 points de vie. Les obstacles que tu détruis peuvent larguer des bombes spéciales ainsi qu'un bonus d'invincibilité. <br> Maintenant que tu connais le principe du jeu, à ton tour d'exploser les adversaires !</p>
-            </div>
-          </div>
-        </section>
-
-
-        <section class="media__section">
-          <div class="media__arrow">
-            <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
-            <h2 class="media__title">Les personnages</h2>
-          </div>
-          <div class="flexContentVertical">
-            <div class="">
-              <img class="media__hero-item" src="" alt="">
-            </div>
-            <div class="media__text">
-              <p>Dans ce jeu, vous avez la possibilité de jouer plusieurs personnages notamment certains hors de l'univers Boomkill. Grâce à nos partenaires tels que Nintendo ou encore Square Enix, vous pouvez incarner des personnages comme Mario ou bien Locke.</p>
-            </div>
-          </div>
-        </section>
-
-        <hr class="media__style">
-
-        <section class="media__section-title">
-          <h2 class="media__title__title">Comment participer à notre jeu concour?</h2>
-        </section>
-
-        <section class="media__section">
-          <div class="media__arrow">
-            <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
-            <h2 class="media__title">Des centaines de prix à gagner grace à nos partenaires : ordianteur portable, nintendo switch, boomkill en version console en avant première...</h2>
-          </div>
-        </section>
-
-        <section class="media__section">
-          <div class="media__arrow">
-            <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
-            <h2 class="media__title">Jouez</h2>
-          </div>
-        </section>
-
-        <section class="media__section">
-          <div class="media__arrow">
-            <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
-            <h2 class="media__title">Partager à vos amis</h2>
-          </div>
-        </section>
-
-        <section class="media__section">
-          <div class="media__arrow">
-            <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
-            <h2 class="media__title">Gardez précieusement le code donné</h2>
-          </div>
-        </section>
-
-        <section class="media__section">
-          <div class="media__arrow">
-            <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
-            <h2 class="media__title">Vous voilà inscrits pour le concours !</h2>
-          </div>
-        </section>
-
-        <hr class="media__style">
-
-        <section class="media__section-title">
-          <h2 class="media__title__title">Evenements à venir</h2>
-        </section>
-
-        <section class="media__section">
-          <div class="media__arrow">
-            <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
-            <h2 class="media__title">Venez nombreux à notre grand évenement au Jardin des Tuileries, à Paris !</h2>
-          </div>
-        </section>
-
-        <section class="media__section">
-          <div class="media__poster">
-            <img class="media__poster-item" src="dist/res/images/poster.jpg" alt="poster__evenement">
-          </div>
-        </section>
-
+      <div class="header__picture">
+        <a href="./game.html"><img class="header__picture-item" src="dist/res/images/8-bit-bomb.png" alt="bomb"></a>
       </div>
-    </main>
-
-    <footer id="footer">
-      <p class="footer__description">Copyright © 2019 - E16 Inc. All rights reserved.</p>
-    </footer>
-
-    <script src="dist/scripts/app.js"></script>
-  </body>
+      <div class="header__caption">
+        <p>Appuyez sur la bombe <span class="block"></span> pour jouer</p>
+      </div>
+    </div>
+  </header>
+  
+  <main id="main">
+    <div class="media container flexContentVertical">
+      <section class="media__section">
+        <h2 class="media__section--title">Le concept</h2>
+        <div class="media__section--text">
+          Boomkill est un jeu de plateforme où le but est d'être le dernier survivant. Pour ce faire: stratégie, coordination et maîtrise seront les qualités requises pour faire de toi un vainqueur !
+        </div>
+      </section>
+      
+      
+      <section class="media__section">
+        <h2 class="media__section--title">Comment jouer ?</h2>
+        <div class="media__section--text">
+          Tu incarnes un personnage placé à l'extrémité de la carte. Ton but est d'éliminer tous les adversaires qui se hisseront contre toi. 
+          <span class="block"></span> 
+          À ta disposition, des bombes que tu poseras afin d'exploser tes adversaires et les obstacles qui t'empêchent d'avancer !
+          <span class="block"></span> 
+          Le personnage que tu joues dispose de 3 points de vie. Les obstacles que tu détruis peuvent larguer des bombes spéciales ainsi qu'un bonus d'invincibilité. 
+          <span class="block"></span>
+          Maintenant que tu connais le principe du jeu, à ton tour d'exploser les adversaires !
+        </div>
+      </section>
+      
+      
+      <section class="media__section">
+        <h2 class="media__section--title">Les personnages</h2>
+        <div class="media__section--text">
+          <p>Dans ce jeu, vous avez la possibilité de jouer plusieurs personnages notamment certains hors de l'univers Boomkill. Grâce à nos partenaires tels que Nintendo ou encore Square Enix, vous pouvez incarner des personnages comme Mario ou bien Locke.</p>
+        </div>
+      </section>
+      
+      <hr class="media__style">
+      
+      <h2 class="media__title--main">Notre jeu concours</h2>
+      
+      <section class="media__section">
+        <div class="media__arrow">
+          <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
+          <h2 class="media__title">Des centaines de prix à gagner grace à nos partenaires : ordianteur portable, nintendo switch, boomkill en version console en avant première...</h2>
+        </div>
+      </section>
+      
+      <section class="media__section">
+        <div class="media__arrow">
+          <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
+          <h2 class="media__title">Jouez</h2>
+        </div>
+      </section>
+      
+      <section class="media__section">
+        <div class="media__arrow">
+          <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
+          <h2 class="media__title">Partager à vos amis</h2>
+        </div>
+      </section>
+      
+      <section class="media__section">
+        <div class="media__arrow">
+          <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
+          <h2 class="media__title">Gardez précieusement le code donné</h2>
+        </div>
+      </section>
+      
+      <section class="media__section">
+        <div class="media__arrow">
+          <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
+          <h2 class="media__title">Vous voilà inscrits pour le concours !</h2>
+        </div>
+      </section>
+      
+      <hr class="media__style">
+      
+      <section class="media__section-title">
+        <h2 class="media__title__title">Evenements à venir</h2>
+      </section>
+      
+      <section class="media__section">
+        <div class="media__arrow">
+          <img class="media__arrow-item" src="dist/res/images/arrow.svg" alt="arrow_icon">
+          <h2 class="media__title">Venez nombreux à notre grand évenement au Jardin des Tuileries, à Paris !</h2>
+        </div>
+      </section>
+      
+      <section class="media__section">
+        <div class="media__poster">
+          <img class="media__poster-item" src="dist/res/images/poster.jpg" alt="poster__evenement">
+        </div>
+      </section>
+      
+    </div>
+  </main>
+  
+  <footer id="footer">
+    <p class="footer__description">Copyright © 2019 - E16 Inc. All rights reserved.</p>
+  </footer>
+  
+  <script src="dist/scripts/app.js"></script>
+</body>
 </html>

@@ -11,15 +11,18 @@
     }
     &__section{
 
-      margin: 40px auto;
-      background-color: $day-card-background;
+      margin: 20px auto;
       border-radius: 30px;
       padding: 20px;
-      .media__title{
+      &--title{
         font-family: $font-title;
         font-size: 2.6rem;
         font-weight: bold;
-        color: $text-color-dark;
+        color: $day-card-background;
+        &:before{
+          content: url(../res/images/arrow.svg);
+          margin-right: 10px;
+        }
       }
       .media__arrow{
         display: flex;
@@ -29,15 +32,12 @@
           height: auto;
         }
       }
-      .media__text{
+      &--text{
         color: $text-color-dark;
         line-height: 2.6rem;
         font-family: $font-primary;
         font-size: 2.2rem;
-        padding-left: 100px;
-        p{
-          margin: 0;
-        }
+        padding: 0 100px;
       }
       .media__poster{
         display: flex;
@@ -53,6 +53,11 @@
       margin: 40px auto;
       border-top: thin solid #999;
       border-bottom: thin solid #999;
+    }
+    .media__title--main{
+      text-align: center;
+      font-family: $font-title;
+      font-weight: bold;
     }
   }
 }

@@ -43,3 +43,13 @@ a{
   justify-content: flex-start;
   align-items: center;
 }
+
+span.block{
+  display: block;
+}
+
+@media screen and (max-width: 960px){
+  .container{
+    width: 100%;
+  }
+}
