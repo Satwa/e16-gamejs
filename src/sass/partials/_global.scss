@@ -15,10 +15,6 @@ body{
   color: #666;
 }
 
-img{
-  width: 100vw;
-}
-
 a{
   text-decoration: none;
 }
@@ -38,6 +34,6 @@ a{
 .flexContentVertical{
   display: flex;
   flex-direction: column;
-  // justify-content: center;
+  justify-content: center;
   align-items: center;
 }

@@ -1,1 +1,31 @@
-
+#main{
+  .media{
+    margin-top: 80px;
+    &__section{
+      margin: 40px auto;
+      .media__title{
+        font-family: sans-serif;
+        font-size: 2.8rem;
+        font-weight: bold;
+        text-decoration: underline;
+        text-decoration-style: solid;
+        text-decoration-color: rgba(0, 102, 255, 1);
+      }
+      .media__hero{
+        padding: 0px 20px;
+        &-item{
+          width: 100%;
+        }
+      }
+      .media__text{
+        padding-top: 20px;
+      }
+    }
+    .media__style{
+      width: 640px;
+      margin: 40px auto;
+      border-top: thin solid #999;
+      border-bottom: thin solid #999;
+    }
+  }
+}
