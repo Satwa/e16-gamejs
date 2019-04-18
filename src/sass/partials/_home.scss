@@ -39,6 +39,14 @@
           margin: 0;
         }
       }
+      .media__poster{
+        display: flex;
+        justify-content: center;
+        &-item{
+          width: 100%;
+
+        }
+      }
     }
     .media__style{
       width: 640px;
