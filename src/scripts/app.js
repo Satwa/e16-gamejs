@@ -24,6 +24,7 @@ function generateRoomId(){
 
 function forceRoomStart(){
     socket.emit("forcestart")
+    document.querySelector("#forcestart").style.display = "none"
 }
 
 
@@ -43,6 +44,12 @@ function prepareMultiplayer(roomParam){
                 game.players[game.getPlayerByName(player.name)].health = player.health // Update player that left before I arrive
             }
             whoAmI = room.players.length - 1
+
+            if(whoAmI === 0){
+                // I am the game master
+                document.querySelector("#forcestart").style.display = "inline"
+                document.querySelector("#forcestart").addEventListener("click", forceRoomStart)
+            }
             
             loadGameOnline()
             game.map.data.map = room.map.slice()

@@ -21,6 +21,7 @@ for (let button of bgButtons) {
 // Game menu
 const gameMenu = document.querySelector(".menu")
 const gameMenuLinks = document.querySelectorAll(".menu a.menu--play")
+const joinMultiplayerLinks = document.querySelectorAll(".menu--multi--join")
 for(let link of gameMenuLinks){
     link.addEventListener('click', function(e){
         e.preventDefault()
@@ -33,10 +34,7 @@ for(let link of gameMenuLinks){
         }else{
             gameMenu.classList.toggle("blur")
             document.querySelector(".menu--multi").style.display = "flex"
-            
-            const joinMultiplayerLinks = document.querySelectorAll(".menu--multi--join")
-            
-            // TODO: Multiplayer modal
+                        
             let generatedCode = generateRoomId()
             document.querySelector("#generatedroomid").innerHTML = "Code : " + generatedCode
 
@@ -67,7 +65,7 @@ function websiteResetMenu(room) {
     document.querySelector('canvas#canvas').style.zIndex = 10
     document.querySelector(".menu--multi").style.display = "none"
     document.querySelector("h1").innerHTML = "Partie en cours sur la room " + room
-    for (let link of gameMenuLinks) {
+    for (let link of joinMultiplayerLinks) {
         link.innerHTML = "Rejoindre"
     }
 }
@@ -76,7 +74,7 @@ function websiteShowEnd(wonIndex, multiplayer) {
     document.querySelector('canvas#canvas').style.zIndex = 1
     document.querySelector(".menu--end").style.display = "flex"
     document.querySelector("h1").innerHTML = "Bombkill"
-
+    gameMenu.classList.toggle("blur")
     clearTimeout(updater)
 
     document.querySelector("#playerindex").innerHTML = wonIndex
@@ -89,7 +87,7 @@ function websiteShowEnd(wonIndex, multiplayer) {
         if(multiplayer){
             document.removeEventListener("keydown", _handleOnlineKeyboard, true)
             game = null
-            gameMenu.classList.toggle("blur")
+            // gameMenu.classList.toggle("blur")
             document.querySelector('.keycontrol--multi').style.display = "none"
             document.querySelector('.keycontrol--solo').style.display = "none"
         }else{
