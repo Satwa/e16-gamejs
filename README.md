@@ -9,7 +9,7 @@ This week, we had to make a game in Vanilla JS. Our choices led us to a Bomberma
 To do that, from 15/04/19 to 19/04/19, after discovering the topic, we assigned tasks to everybody in order to be more efficient. Of course, most of the things are in English except while browsing the website.
 
 #### Our crew at E16
-- Valentin Sejourne *at Development & Design*
+- Valentin Séjourné *at Development & Design*
 - Arnaud Soyer *at Marketing & Communication*
 - Céline Sung *at Marketing, Communication & Design*
 - Joshua Tabakhoff *at Development*
