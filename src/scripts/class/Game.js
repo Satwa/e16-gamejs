@@ -115,7 +115,7 @@ class Game{
                                 if (deads === this.players.length - 1) {
                                     console.log(deads)
                                     console.log(isPlayerDeadAt)
-                                    websiteShowEnd(isPlayerDeadAt.indexOf(1) + 1, this.multiplayer)
+                                    websiteShowEnd(isPlayerDeadAt.indexOf(0) + 1, this.multiplayer)
                                 }
                             }
                         }
