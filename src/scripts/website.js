@@ -85,13 +85,13 @@ function websiteShowEnd(wonIndex, multiplayer) {
 
         document.querySelector(".menu--end").style.display = "none"
         if(multiplayer){
-            document.removeEventListener("keydown", _handleOnlineKeyboard, true)
+            document.removeEventListener("keydown", _handleOnlineKeyboard, false)
             game = null
             // gameMenu.classList.toggle("blur")
             document.querySelector('.keycontrol--multi').style.display = "none"
             document.querySelector('.keycontrol--solo').style.display = "none"
         }else{
-            document.removeEventListener("keydown", _handleLocalKeyboard, true)
+            document.removeEventListener("keydown", _handleLocalKeyboard, false)
             game = null
             loadGameLocally()
         }

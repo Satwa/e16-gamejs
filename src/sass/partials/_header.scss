@@ -1,67 +1,71 @@
 #header{
-  width: 100%;
-  height: 100vh;
-  background: url('../res/images/day_mode.gif') center repeat-x;
-  background-size: auto 100%;
-  position: relative;
-  .navigation{
-    .navigation__menu{
-      margin: 0;
-      justify-content: flex-end;
-      .navigation__list{
-        border: thin solid rgba(0, 0, 0, 0);
-        width: 47px;
-        height: 47px;
-        border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.3);
-        list-style: none;
-        margin: 10px;
-        padding: 10px;
-        .navigation__link{
-          text-decoration: none;
-          .navigation__icon{
-            width: 24px;
-            height: 24px;
-            
-          }
-        }
-      }
-    }
-  }
-  .header__content{
-    margin-top: 60px;
-    text-align: center;
-    .header__logo{
-      max-width: 600px;
-      &-item{
-        width: 100%;
-      }
-    }
-    .header__picture{
-      width: 128px;
-      height: 128px;
-      margin-left: 30px;
-      margin-top: 20px;
-      &-item{
-        width: 100%;
-      }
-    }
-    .header__caption{
-      padding-top: 30px;
-      font-size: 2.6rem;
-      font-weight: bold;
-      color: rgba(255, 255, 255, 1);
-      font-family : $font-title;  
-    }
-
-    .scroll{
-      font-family : $font-title;
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      transform: rotate(-90deg) translateX(50px);
-      color: #FFF;
-    }
-  }
+	width: 100%;
+	height: 100vh;
+	background: url('../res/images/day_mode.gif') center repeat-x;
+	background-size: auto 100%;
+	position: relative;
+	.navigation{
+		display: flex;
+		justify-content: space-between;
+		img{
+			height: 47px;
+		}
+		.navigation__menu{
+			margin: 0;
+			justify-content: flex-end;
+			.navigation__list{
+				border: thin solid rgba(0, 0, 0, 0);
+				width: 47px;
+				height: 47px;
+				border-radius: 50%;
+				background-color: rgba(255, 255, 255, 0.3);
+				list-style: none;
+				margin: 10px;
+				padding: 10px;
+				.navigation__link{
+					text-decoration: none;
+					.navigation__icon{
+						width: 24px;
+						height: 24px;
+						
+					}
+				}
+			}
+		}
+	}
+	.header__content{
+		margin-top: 60px;
+		text-align: center;
+		.header__logo{
+			max-width: 600px;
+			&-item{
+				width: 100%;
+			}
+		}
+		.header__picture{
+			width: 128px;
+			height: 128px;
+			margin-left: 30px;
+			margin-top: 20px;
+			&-item{
+				width: 100%;
+			}
+		}
+		.header__caption{
+			padding-top: 30px;
+			font-size: 2.6rem;
+			font-weight: bold;
+			color: rgba(255, 255, 255, 1);
+			font-family : $font-title;  
+		}
+		
+		.scroll{
+			font-family : $font-title;
+			position: absolute;
+			bottom: 10px;
+			right: 0;
+			transform: rotate(-90deg) translateX(50px);
+			color: #FFF;
+		}
+	}
 }
-  
